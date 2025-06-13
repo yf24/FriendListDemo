@@ -1,0 +1,51 @@
+# Xcode
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+# Xcode user interface state
+*.xcuserstate
+*.xcuserdatad
+
+# SwiftPM
+.build/
+Packages/
+Package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Accio dependency manager
+Dependencies/
+.accio/
+
+# Xcode automatic backup files
+*.xcscmblueprint
+
+# User-specific
+*.xcuserstate
+
+# Fastlane
+fastlane/report.xml
+fastlane/screenshots
+fastlane/test_output
+
+# Env files
+*.env
+
+# Misc
+.DS_Store
+.idea/
+.vscode/
