@@ -5,12 +5,10 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewControllers()
-        print("FriendListViewController loaded")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("MainTabBarController appeared, tabBar.isHidden:", tabBar.isHidden)
     }
     
     private func setupViewControllers() {
