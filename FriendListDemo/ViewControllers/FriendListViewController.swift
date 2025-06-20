@@ -7,14 +7,7 @@ class FriendListViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - UI Components
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FriendCell")
-        tableView.delegate = self
-        tableView.dataSource = self
-        return tableView
-    }()
+    private var containerView: UIView?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -24,44 +17,30 @@ class FriendListViewController: UIViewController {
         viewModel.loadData(for: .empty)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         view.backgroundColor = .white
-        title = "好友"
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        // 載入 ContainerView xib
+        if let container = Bundle.main.loadNibNamed("ContainerView", owner: self, options: nil)?.first as? UIView {
+            container.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(container)
+            NSLayoutConstraint.activate([
+                container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+            self.containerView = container
+        }
     }
     
     private func setupBindings() {
-        viewModel.$friends
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.tableView.reloadData()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$isLoading
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isLoading in
-                // TODO: 實作載入指示器
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$error
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                if let error = error {
-                    // TODO: 實作錯誤處理
-                    print("Error: \(error.localizedDescription)")
-                }
-            }
-            .store(in: &cancellables)
+        // 暫時不用管資料綁定，等 UI 完成再補
     }
 }
 
