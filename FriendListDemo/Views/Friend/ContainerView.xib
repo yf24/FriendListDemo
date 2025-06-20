@@ -15,28 +15,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbY-a0-1Ka" userLabel="Header View" customClass="HeaderView" customModule="FriendListDemo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="118" width="393" height="148"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="192"/>
                     <color key="backgroundColor" systemColor="systemPurpleColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="148" id="cdU-f9-TuY"/>
+                        <constraint firstAttribute="height" priority="250" constant="192" id="181-JT-Krz"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-rF-REE" userLabel="Content View" customClass="ContentView" customModule="FriendListDemo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="266" width="393" height="518"/>
+                    <rect key="frame" x="0.0" y="310" width="393" height="474"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5oe-rF-REE" secondAttribute="trailing" id="2bF-h0-7qf"/>
+                <constraint firstItem="5oe-rF-REE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="15a-dn-pqT"/>
                 <constraint firstItem="5oe-rF-REE" firstAttribute="top" secondItem="HbY-a0-1Ka" secondAttribute="bottom" id="2bI-MH-gkl"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HbY-a0-1Ka" secondAttribute="trailing" id="6UY-K4-oa9"/>
-                <constraint firstItem="HbY-a0-1Ka" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Cyf-jA-MEi"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5oe-rF-REE" secondAttribute="bottom" id="KKr-FQ-IRP"/>
+                <constraint firstItem="HbY-a0-1Ka" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="OXi-e2-NDo"/>
+                <constraint firstItem="5oe-rF-REE" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="P2L-Bd-7C0"/>
                 <constraint firstItem="HbY-a0-1Ka" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="S5C-jx-HQV"/>
-                <constraint firstItem="5oe-rF-REE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TOB-IC-yH6"/>
-                <constraint firstItem="HbY-a0-1Ka" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gXZ-gt-dWY"/>
+                <constraint firstItem="HbY-a0-1Ka" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="djS-pS-gRc"/>
+                <constraint firstItem="5oe-rF-REE" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="wTr-3o-XY5"/>
             </constraints>
             <connections>
                 <outlet property="contentView" destination="5oe-rF-REE" id="9dt-vH-wDY"/>
