@@ -38,31 +38,31 @@ class FriendListViewController: UIViewController {
     private func setupBindings() {
         // 串接 headerView 所有事件
         containerView.headerView.onATMButtonTapped = { [weak self] in
-            print("onATMButtonTapped")
+            AlertUtils.showAlert(on: self, title: "ATM", message: "onATMButtonTapped")
         }
         containerView.headerView.onTransferButtonTapped = { [weak self] in
-            print("onTransferButtonTapped")
+            AlertUtils.showAlert(on: self, title: "Transfer", message: "onTransferButtonTapped")
         }
         containerView.headerView.onScanButtonTapped = { [weak self] in
-            print("onScanButtonTapped")
+            AlertUtils.showAlert(on: self, title: "Scan", message: "onScanButtonTapped")
         }
         containerView.headerView.onKokoIdButtonTapped = { [weak self] in
-            print("onKokoIdButtonTapped")
+            AlertUtils.showAlert(on: self, title: "KOKO ID", message: "onKokoIdButtonTapped")
         }
         containerView.headerView.onAvatarButtonTapped = { [weak self] in
-            print("onAvatarButtonTapped")
+            AlertUtils.showAlert(on: self, title: "Avatar", message: "onAvatarButtonTapped")
         }
         containerView.headerView.onFriendButtonTapped = { [weak self] in
-            print("onFriendButtonTapped")
+            AlertUtils.showAlert(on: self, title: "Friend", message: "onFriendButtonTapped")
         }
         containerView.headerView.onChatButtonTapped = { [weak self] in
-            print("onChatButtonTapped")
+            AlertUtils.showAlert(on: self, title: "Chat", message: "onChatButtonTapped")
         }
         containerView.contentView.onAddFriendTapped = { [weak self] in
-            print("onAddFriendTapped")
+            AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")
         }
         containerView.contentView.onSetKokoIdLabelTapped = { [weak self] in
-            print("onSetKokoIdLabelTapped")
+            AlertUtils.showAlert(on: self, title: "設定 KOKO ID", message: "onSetKokoIdLabelTapped")
         }
     }
 }
