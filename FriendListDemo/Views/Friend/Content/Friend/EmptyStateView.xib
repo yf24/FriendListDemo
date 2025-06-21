@@ -1,56 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="2">
-                    <rect key="frame" x="87.5" y="20" width="200" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="就從加好友開始吧 :)" lineBreakMode="tailTruncation" id="3">
-                    <rect key="frame" x="20" y="150" width="335" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="與好友們一起用 KOKO 轉帳吧！還能互相收付款、記帳呢 :)" lineBreakMode="tailTruncation" id="4">
-                    <rect key="frame" x="20" y="190" width="335" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5">
-                    <rect key="frame" x="87.5" y="250" width="200" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="加好友">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6">
-                    <rect key="frame" x="87.5" y="310" width="200" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="設定 KOKO ID">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                </button>
-            </subviews>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="72.51908396946564" y="21.47887323943662"/>
-        </view>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyStateView" customModule="FriendListDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="addFriendButton" destination="yw7-9m-VjZ" id="23W-tO-ZF9"/>
+                <outlet property="descriptionLabel" destination="KNB-Qf-Tjc" id="xHt-D1-v1r"/>
+                <outlet property="emptyImageView" destination="1BH-mB-S4T" id="XyN-a6-FBQ"/>
+                <outlet property="setKokoIdLabel" destination="xGY-I8-gHn" id="mpr-5x-SFe"/>
+                <outlet property="titleLabel" destination="UzK-Cp-YPD" id="f4O-4P-Ng9"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="525"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="1BH-mB-S4T">
+                    <rect key="frame" x="67.5" y="50" width="245" height="172"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="172" id="CMn-3W-vtc"/>
+                        <constraint firstAttribute="width" constant="245" id="nB7-bq-Sex"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="就從加好友開始吧：）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzK-Cp-YPD">
+                    <rect key="frame" x="97" y="263" width="186" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                    <color key="textColor" name="lightGrey2"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNB-Qf-Tjc">
+                    <rect key="frame" x="70" y="296.5" width="240" height="33.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="Jg0-9r-CYd"/>
+                    </constraints>
+                    <string key="text">與好友們一起用 KOKO 聊起來！
+還能互相收付款、發紅包喔：）</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" name="lightGrey"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yw7-9m-VjZ" customClass="GradientButton" customModule="FriendListDemo" customModuleProvider="target">
+                    <rect key="frame" x="94" y="355" width="192" height="40"/>
+                    <color key="backgroundColor" name="very light pink"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="RmP-as-TEd"/>
+                        <constraint firstAttribute="width" constant="192" id="Y0H-GW-fj6"/>
+                    </constraints>
+                    <color key="tintColor" name="white - Three"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="加好友">
+                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                    </buttonConfiguration>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幫助好友更快找到你？設定 KOKO ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGY-I8-gHn">
+                    <rect key="frame" x="84.5" y="487" width="211" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" name="lightGrey"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="UzK-Cp-YPD" firstAttribute="top" secondItem="1BH-mB-S4T" secondAttribute="bottom" constant="41" id="8rB-PU-vTT"/>
+                <constraint firstItem="yw7-9m-VjZ" firstAttribute="top" secondItem="KNB-Qf-Tjc" secondAttribute="bottom" constant="25" id="ElO-Z5-Ifv"/>
+                <constraint firstItem="1BH-mB-S4T" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="JO7-WK-XES"/>
+                <constraint firstItem="UzK-Cp-YPD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ocr-Io-heg"/>
+                <constraint firstItem="1BH-mB-S4T" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wfi-9d-ubG"/>
+                <constraint firstItem="KNB-Qf-Tjc" firstAttribute="top" secondItem="UzK-Cp-YPD" secondAttribute="bottom" constant="8" id="YBR-0H-JSr"/>
+                <constraint firstItem="yw7-9m-VjZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZS8-RY-uMn"/>
+                <constraint firstItem="xGY-I8-gHn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cv8-mH-U2k"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="xGY-I8-gHn" secondAttribute="bottom" constant="22" id="jaG-Ql-Pa0"/>
+                <constraint firstItem="KNB-Qf-Tjc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xPC-Df-39f"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="68.799999999999997" y="-43.628185907046479"/>
+        </view>
     </objects>
+    <resources>
+        <image name="Image" width="245" height="172"/>
+        <namedColor name="lightGrey">
+            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGrey2">
+            <color red="0.27843135595321655" green="0.27843137254901962" blue="0.27843135595321655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="very light pink">
+            <color red="0.97647058823529409" green="0.69803921568627447" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white - Three">
+            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
