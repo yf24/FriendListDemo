@@ -7,7 +7,7 @@ class FriendListViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - UI Components
-    private var containerView: UIView?
+    private let containerView = ContainerView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -25,22 +25,39 @@ class FriendListViewController: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         view.backgroundColor = .white
-        // 載入 ContainerView xib
-        if let container = Bundle.main.loadNibNamed("ContainerView", owner: self, options: nil)?.first as? UIView {
-            container.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(container)
-            NSLayoutConstraint.activate([
-                container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            ])
-            self.containerView = container
-        }
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     private func setupBindings() {
-        // 暫時不用管資料綁定，等 UI 完成再補
+        // 串接 headerView 所有事件
+        containerView.headerView.onATMButtonTapped = { [weak self] in
+            print("onATMButtonTapped")
+        }
+        containerView.headerView.onTransferButtonTapped = { [weak self] in
+            print("onTransferButtonTapped")
+        }
+        containerView.headerView.onScanButtonTapped = { [weak self] in
+            print("onScanButtonTapped")
+        }
+        containerView.headerView.onKokoIdButtonTapped = { [weak self] in
+            print("onKokoIdButtonTapped")
+        }
+        containerView.headerView.onAvatarButtonTapped = { [weak self] in
+            print("onAvatarButtonTapped")
+        }
+        containerView.headerView.onFriendButtonTapped = { [weak self] in
+            print("onFriendButtonTapped")
+        }
+        containerView.headerView.onChatButtonTapped = { [weak self] in
+            print("onChatButtonTapped")
+        }
     }
 }
 
