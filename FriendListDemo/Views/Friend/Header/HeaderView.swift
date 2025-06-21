@@ -13,6 +13,15 @@ class HeaderView: UIView {
     // control panel
     @IBOutlet weak var friendButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
+    // 小紅點
+    private let redDotView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(resource: .hotPink)
+        view.layer.cornerRadius = 5
+        view.isHidden = false // 預設顯示，未來可根據狀態控制
+        return view
+    }()
 
     // MARK: - Callback Closures
     var onATMButtonTapped: (() -> Void)?
@@ -52,6 +61,14 @@ class HeaderView: UIView {
             image: UIImage(resource: .kokoIdArrow),
             imagePadding: 0
         )
+        // 加小紅點
+        addSubview(redDotView)
+        NSLayoutConstraint.activate([
+            redDotView.widthAnchor.constraint(equalToConstant: 10),
+            redDotView.heightAnchor.constraint(equalToConstant: 10),
+            redDotView.centerYAnchor.constraint(equalTo: kokoIdButton.centerYAnchor),
+            redDotView.leadingAnchor.constraint(equalTo: kokoIdButton.trailingAnchor, constant: 15)
+        ])
 
         updateTabSelection(.friend)
     }
