@@ -15,4 +15,34 @@ extension UIView {
             self.addSubview(view)
         }
     }
+
+    // MARK: - Indicator View
+    private static let indicatorTag = 9999
+
+    /// 在底部顯示一條指示線
+    func showIndicator(
+        color: UIColor, 
+        weight: CGFloat = 20, 
+        height: CGFloat = 4, 
+        cornerRadius: CGFloat = 2
+    ) {
+        removeIndicator()
+        let indicator = UIView()
+        indicator.backgroundColor = color
+        indicator.layer.cornerRadius = cornerRadius
+        indicator.tag = UIView.indicatorTag
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.heightAnchor.constraint(equalToConstant: height),
+            indicator.widthAnchor.constraint(equalToConstant: weight),
+            indicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            indicator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 4)
+        ])
+    }
+
+    /// 移除底部指示線
+    func removeIndicator() {
+        subviews.first(where: { $0.tag == UIView.indicatorTag })?.removeFromSuperview()
+    }
 } 
