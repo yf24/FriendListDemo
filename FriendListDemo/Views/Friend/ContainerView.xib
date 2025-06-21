@@ -20,14 +20,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbY-a0-1Ka" userLabel="Header View" customClass="HeaderView" customModule="FriendListDemo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="118" width="393" height="192"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="191"/>
                     <color key="backgroundColor" systemColor="systemPurpleColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" priority="250" constant="192" id="181-JT-Krz"/>
+                        <constraint firstAttribute="height" constant="191" id="181-JT-Krz"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-rF-REE" userLabel="Content View" customClass="ContentView" customModule="FriendListDemo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="310" width="393" height="474"/>
+                    <rect key="frame" x="0.0" y="309" width="393" height="475"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                 </view>
             </subviews>
@@ -47,13 +47,13 @@
     </objects>
     <resources>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

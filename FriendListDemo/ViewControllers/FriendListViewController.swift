@@ -58,6 +58,12 @@ class FriendListViewController: UIViewController {
         containerView.headerView.onChatButtonTapped = { [weak self] in
             print("onChatButtonTapped")
         }
+        containerView.contentView.onAddFriendTapped = { [weak self] in
+            print("onAddFriendTapped")
+        }
+        containerView.contentView.onSetKokoIdLabelTapped = { [weak self] in
+            print("onSetKokoIdLabelTapped")
+        }
     }
 }
 

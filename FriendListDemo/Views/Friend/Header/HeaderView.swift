@@ -49,8 +49,12 @@ class HeaderView: UIView {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupUI()
         setupBindings()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupUI()
     }
 
     // MARK: - Binding
