@@ -37,7 +37,7 @@ extension UIView {
             indicator.heightAnchor.constraint(equalToConstant: height),
             indicator.widthAnchor.constraint(equalToConstant: weight),
             indicator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            indicator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+            indicator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
         ])
     }
 

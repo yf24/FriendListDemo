@@ -15,15 +15,17 @@
                 <outlet property="avatarButton" destination="YfY-m3-rxC" id="165-k1-uR2"/>
                 <outlet property="chatButton" destination="KGM-BN-QGk" id="Ut8-TC-x1J"/>
                 <outlet property="friendButton" destination="819-hK-yNI" id="Bbb-vc-wPF"/>
+                <outlet property="inviteCardStackView" destination="Fwf-ME-Z5f" id="GHA-Um-jIW"/>
                 <outlet property="kokoIdButton" destination="1Bs-1k-DNG" id="0gf-Ky-Yk9"/>
                 <outlet property="nameLabel" destination="hBV-Eu-3MY" id="QQM-bS-Khs"/>
                 <outlet property="scanButton" destination="tM3-yd-ivz" id="Ztn-ie-Syz"/>
+                <outlet property="topStackView" destination="2av-p7-FaX" id="e7L-Zp-cU3"/>
                 <outlet property="transferButton" destination="3nx-Vg-0ip" id="cPy-Np-k53"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="616" height="192"/>
+            <rect key="frame" x="0.0" y="0.0" width="616" height="266"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmR-bJ-4a6" userLabel="Atm Btn">
@@ -44,6 +46,107 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="transfer_btn"/>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7J-CC-49i" userLabel="divider view">
+                    <rect key="frame" x="0.0" y="265" width="616" height="1"/>
+                    <color key="backgroundColor" name="very light pink 1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="JsP-c4-JgR"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="2av-p7-FaX" userLabel="Top Stack View">
+                    <rect key="frame" x="0.0" y="24" width="616" height="242"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGV-cz-vW9" userLabel="User Info View">
+                            <rect key="frame" x="0.0" y="0.0" width="616" height="102"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="紫晽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-Eu-3MY" userLabel="User Name">
+                                    <rect key="frame" x="30" y="35" width="34" height="20.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <color key="textColor" name="lightGrey2"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfY-m3-rxC">
+                                    <rect key="frame" x="534" y="24" width="52" height="54"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="C2Y-sw-JBf"/>
+                                        <constraint firstAttribute="width" constant="52" id="UoL-PC-rJ6"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="avatar"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-1k-DNG" userLabel="KOKO ID Button">
+                                    <rect key="frame" x="30.000000000000007" y="63.333333333333321" width="81.666666666666686" height="15.666666666666664"/>
+                                    <color key="tintColor" name="lightGrey2"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="設定 KOKO ID">
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
+                                    </buttonConfiguration>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="hBV-Eu-3MY" firstAttribute="leading" secondItem="kGV-cz-vW9" secondAttribute="leading" constant="30" id="2O6-Yu-XeK"/>
+                                <constraint firstAttribute="trailing" secondItem="YfY-m3-rxC" secondAttribute="trailing" constant="30" id="YOr-Vh-IkU"/>
+                                <constraint firstItem="1Bs-1k-DNG" firstAttribute="top" secondItem="hBV-Eu-3MY" secondAttribute="bottom" constant="8" id="cCK-94-rT1"/>
+                                <constraint firstItem="YfY-m3-rxC" firstAttribute="centerY" secondItem="kGV-cz-vW9" secondAttribute="centerY" id="dXp-AU-l9f"/>
+                                <constraint firstAttribute="height" constant="102" id="dgF-3l-0KW"/>
+                                <constraint firstItem="hBV-Eu-3MY" firstAttribute="top" secondItem="kGV-cz-vW9" secondAttribute="top" constant="35" id="nOp-yE-Xsf"/>
+                                <constraint firstItem="1Bs-1k-DNG" firstAttribute="leading" secondItem="hBV-Eu-3MY" secondAttribute="leading" id="rDH-wn-jRJ"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fwf-ME-Z5f" userLabel="Invite Card Stack View">
+                            <rect key="frame" x="0.0" y="108" width="616" height="94"/>
+                            <color key="backgroundColor" name="frogGreen"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="250" constant="80" id="2PO-wl-c8H"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xju-hf-zz2">
+                            <rect key="frame" x="0.0" y="208" width="616" height="34"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OeE-CC-qxs" userLabel="Control Panel Stack View">
+                                    <rect key="frame" x="20" y="0.0" width="100" height="34"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="819-hK-yNI">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
+                                            <color key="tintColor" name="lightGrey2"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="好友">
+                                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="13"/>
+                                            </buttonConfiguration>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGM-BN-QGk">
+                                            <rect key="frame" x="50" y="0.0" width="50" height="34"/>
+                                            <color key="tintColor" name="lightGrey2"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="聊天">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                            </buttonConfiguration>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="7Ju-1V-HWp"/>
+                                <constraint firstItem="OeE-CC-qxs" firstAttribute="top" secondItem="Xju-hf-zz2" secondAttribute="top" id="C4p-Eq-ywC"/>
+                                <constraint firstItem="OeE-CC-qxs" firstAttribute="leading" secondItem="Xju-hf-zz2" secondAttribute="leading" constant="20" id="iW4-p2-tMZ"/>
+                                <constraint firstAttribute="bottom" secondItem="OeE-CC-qxs" secondAttribute="bottom" id="kjs-U3-Ldm"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Xju-hf-zz2" secondAttribute="bottom" id="4Wb-V0-5l7"/>
+                        <constraint firstItem="kGV-cz-vW9" firstAttribute="top" secondItem="2av-p7-FaX" secondAttribute="top" id="7Az-hG-esv"/>
+                        <constraint firstAttribute="trailing" secondItem="Xju-hf-zz2" secondAttribute="trailing" id="8QU-Ui-bbJ"/>
+                        <constraint firstAttribute="trailing" secondItem="Fwf-ME-Z5f" secondAttribute="trailing" id="DQE-lX-aNJ"/>
+                        <constraint firstItem="Xju-hf-zz2" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="Kdw-J5-ulI"/>
+                        <constraint firstItem="kGV-cz-vW9" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="RaT-O1-Q5u"/>
+                        <constraint firstAttribute="trailing" secondItem="kGV-cz-vW9" secondAttribute="trailing" id="hg4-R7-c0t"/>
+                        <constraint firstItem="Fwf-ME-Z5f" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="x8I-cO-e81"/>
+                    </constraints>
+                </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tM3-yd-ivz">
                     <rect key="frame" x="572" y="0.0" width="24" height="24"/>
                     <constraints>
@@ -53,96 +156,27 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="scan_btn"/>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGV-cz-vW9" userLabel="User Info View">
-                    <rect key="frame" x="0.0" y="24" width="616" height="109"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="紫晽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-Eu-3MY" userLabel="User Name">
-                            <rect key="frame" x="30" y="35" width="34" height="20.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                            <color key="textColor" name="lightGrey2"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfY-m3-rxC">
-                            <rect key="frame" x="534" y="27.666666666666664" width="52" height="53.999999999999993"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="54" id="C2Y-sw-JBf"/>
-                                <constraint firstAttribute="width" constant="52" id="UoL-PC-rJ6"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="avatar"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-1k-DNG" userLabel="KOKO ID Button">
-                            <rect key="frame" x="30.000000000000007" y="63.333333333333321" width="81.666666666666686" height="15.666666666666664"/>
-                            <color key="tintColor" name="lightGrey2"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="設定 KOKO ID">
-                                <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
-                                <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
-                            </buttonConfiguration>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="hBV-Eu-3MY" firstAttribute="leading" secondItem="kGV-cz-vW9" secondAttribute="leading" constant="30" id="2O6-Yu-XeK"/>
-                        <constraint firstAttribute="trailing" secondItem="YfY-m3-rxC" secondAttribute="trailing" constant="30" id="YOr-Vh-IkU"/>
-                        <constraint firstItem="1Bs-1k-DNG" firstAttribute="top" secondItem="hBV-Eu-3MY" secondAttribute="bottom" constant="8" id="cCK-94-rT1"/>
-                        <constraint firstItem="YfY-m3-rxC" firstAttribute="centerY" secondItem="kGV-cz-vW9" secondAttribute="centerY" id="dXp-AU-l9f"/>
-                        <constraint firstItem="hBV-Eu-3MY" firstAttribute="top" secondItem="kGV-cz-vW9" secondAttribute="top" constant="35" id="nOp-yE-Xsf"/>
-                        <constraint firstItem="1Bs-1k-DNG" firstAttribute="leading" secondItem="hBV-Eu-3MY" secondAttribute="leading" id="rDH-wn-jRJ"/>
-                        <constraint firstAttribute="height" constant="109" id="wWF-BM-xdY"/>
-                    </constraints>
-                </view>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OeE-CC-qxs" userLabel="Control Panel Stack View">
-                    <rect key="frame" x="20" y="133" width="100" height="63"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="819-hK-yNI">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="63"/>
-                            <color key="tintColor" name="lightGrey2"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="好友">
-                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="13"/>
-                            </buttonConfiguration>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGM-BN-QGk">
-                            <rect key="frame" x="50" y="0.0" width="50" height="63"/>
-                            <color key="tintColor" name="lightGrey2"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="聊天">
-                                <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
-                            </buttonConfiguration>
-                        </button>
-                    </subviews>
-                </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7J-CC-49i" userLabel="divider view">
-                    <rect key="frame" x="0.0" y="191" width="616" height="1"/>
-                    <color key="backgroundColor" name="very light pink 1"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="JsP-c4-JgR"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="dn4-2i-PEy"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="kGV-cz-vW9" firstAttribute="leading" secondItem="dn4-2i-PEy" secondAttribute="leading" id="14D-kE-23u"/>
                 <constraint firstItem="3nx-Vg-0ip" firstAttribute="centerY" secondItem="NmR-bJ-4a6" secondAttribute="centerY" id="1FM-Td-5Ru"/>
                 <constraint firstItem="3nx-Vg-0ip" firstAttribute="leading" secondItem="NmR-bJ-4a6" secondAttribute="trailing" constant="24" id="241-qi-O92"/>
                 <constraint firstItem="p7J-CC-49i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4Wu-Fw-nUs"/>
-                <constraint firstItem="kGV-cz-vW9" firstAttribute="top" secondItem="NmR-bJ-4a6" secondAttribute="bottom" id="6TB-w0-Pe1"/>
-                <constraint firstItem="OeE-CC-qxs" firstAttribute="top" secondItem="kGV-cz-vW9" secondAttribute="bottom" id="7LT-Ql-jVn"/>
-                <constraint firstItem="dn4-2i-PEy" firstAttribute="trailing" secondItem="kGV-cz-vW9" secondAttribute="trailing" id="HgV-yy-FER"/>
                 <constraint firstItem="p7J-CC-49i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LM0-G3-TBY"/>
                 <constraint firstItem="NmR-bJ-4a6" firstAttribute="leading" secondItem="dn4-2i-PEy" secondAttribute="leading" constant="20" id="NEw-Nr-Z2W"/>
-                <constraint firstItem="OeE-CC-qxs" firstAttribute="leading" secondItem="hBV-Eu-3MY" secondAttribute="leading" constant="-10" id="RAx-TW-bzI"/>
+                <constraint firstItem="2av-p7-FaX" firstAttribute="top" secondItem="tM3-yd-ivz" secondAttribute="bottom" id="Pn7-BP-stq"/>
                 <constraint firstItem="dn4-2i-PEy" firstAttribute="trailing" secondItem="tM3-yd-ivz" secondAttribute="trailing" constant="20" id="SY3-gH-lia"/>
                 <constraint firstItem="tM3-yd-ivz" firstAttribute="centerY" secondItem="NmR-bJ-4a6" secondAttribute="centerY" id="X4B-BE-wYI"/>
                 <constraint firstItem="NmR-bJ-4a6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nwE-8h-ybB"/>
-                <constraint firstItem="p7J-CC-49i" firstAttribute="top" secondItem="OeE-CC-qxs" secondAttribute="bottom" constant="-5" id="qcw-bD-Ye1"/>
                 <constraint firstAttribute="bottom" secondItem="p7J-CC-49i" secondAttribute="bottom" id="rAO-eV-fFn"/>
                 <constraint firstAttribute="trailing" secondItem="p7J-CC-49i" secondAttribute="trailing" id="rFU-wQ-XUe"/>
+                <constraint firstAttribute="trailing" secondItem="2av-p7-FaX" secondAttribute="trailing" id="tNs-cY-kOp"/>
+                <constraint firstItem="2av-p7-FaX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="utl-16-dnM"/>
+                <constraint firstAttribute="bottom" secondItem="2av-p7-FaX" secondAttribute="bottom" id="vpK-Ev-yZa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="260.86956521739131" y="-220.51630434782609"/>
+            <point key="canvasLocation" x="260.86956521739131" y="-190.7608695652174"/>
         </view>
     </objects>
     <resources>
@@ -150,11 +184,14 @@
         <image name="avatar" width="52" height="54"/>
         <image name="scan_btn" width="24" height="24"/>
         <image name="transfer_btn" width="24" height="24"/>
+        <namedColor name="frogGreen">
+            <color red="0.33725490196078434" green="0.70196078431372544" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightGrey2">
-            <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="very light pink 1">
-            <color red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

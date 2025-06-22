@@ -29,7 +29,7 @@ class FriendListCell: UITableViewCell, ReusableCell {
     func configure(with friend: Friend) {
         nameLabel.text = friend.name
 
-        if friend.status == .inviting { // 轉帳 + 邀請中
+        if friend.status == .invitedSent { // 轉帳 + 邀請送出
             inviteButton.isHidden = false
             moreButton.isHidden = true
             functionStackView.setCustomSpacing(10, after: transferButton)

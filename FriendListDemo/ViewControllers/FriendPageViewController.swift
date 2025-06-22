@@ -15,7 +15,7 @@ class FriendPageViewController: UIViewController {
         setupUI()
         setupBindings()
         setupDismissKeyboardGesture()
-        viewModel.loadData(for: .empty)
+        viewModel.loadData(for: .testData)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +54,10 @@ class FriendPageViewController: UIViewController {
                     self?.containerView.show(tab: .friend)
                 case .chatTab:
                     self?.containerView.show(tab: .chat)
+                case .invitedFriendAgree(let friend):
+                    AlertUtils.showAlert(on: self, title: "同意邀請", message: "\(friend.name)")
+                case .invitedFriendDecline(let friend):
+                    AlertUtils.showAlert(on: self, title: "拒絕邀請", message: "\(friend.name)")
                 }
             }
             .store(in: &cancellables)
@@ -78,6 +82,14 @@ class FriendPageViewController: UIViewController {
                         print("[更多] rawData: \(friend)")
                     }
                 }
+            }
+            .store(in: &cancellables)
+
+        viewModel.$friends
+            .combineLatest(viewModel.$invitations)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] friends, invitations in
+                self?.containerView.updateFriendsAndInvitations(friends: friends, invitations: invitations)
             }
             .store(in: &cancellables)
     }

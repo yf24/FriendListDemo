@@ -44,20 +44,6 @@ class ContainerView: UIView {
         loadFromNibToSelf()
         setupViews()
         setupBindings()
-        // mock 測試
-        let mockFriends = [
-            Friend(name: "測試好友",
-                   status: .inviting,
-                   isTop: true,
-                   fid: "001",
-                   updateDateString: "20240701"),
-            Friend(name: "測試好友2",
-                   status: .completed,
-                   isTop: false,
-                   fid: "002",
-                   updateDateString: "20240702"),
-        ]
-        updateFriends(mockFriends)
     }
     
     required init?(coder: NSCoder) {
@@ -95,13 +81,13 @@ class ContainerView: UIView {
         chatView.isHidden = (tab != .chat)
     }
 
-    public func updateFriends(_ friends: [Friend]) {
-        self.friends = friends
+    public func updateFriendsAndInvitations(friends: [Friend], invitations: [Friend]) {
         if friends.isEmpty {
             friendView.showEmptyState()
         } else {
             friendView.hideEmptyState()
             friendView.update(with: friends)
         }
+        headerView.updateInvitations(invitations)
     }
 } 

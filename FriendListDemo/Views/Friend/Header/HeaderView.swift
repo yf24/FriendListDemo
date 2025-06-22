@@ -7,10 +7,14 @@ class HeaderView: UIView {
     @IBOutlet weak var atmButton: UIButton!
     @IBOutlet weak var transferButton: UIButton!
     @IBOutlet weak var scanButton: UIButton!
+    // 管理 user info, invite area, conrol panel
+    @IBOutlet weak var topStackView: UIStackView!
     // user info
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var kokoIdButton: UIButton!
     @IBOutlet weak var avatarButton: UIButton!
+    // invite area
+    @IBOutlet weak var inviteCardStackView: UIStackView!
     // control panel
     @IBOutlet weak var friendButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
@@ -37,6 +41,8 @@ class HeaderView: UIView {
         case friendTab
         case chatTab
         case kokoId
+        case invitedFriendAgree(Friend)
+        case invitedFriendDecline(Friend)
     }
     // MARK: - Publisher
     let eventPublisher = PassthroughSubject<Event, Never>()
@@ -67,6 +73,7 @@ class HeaderView: UIView {
 
     // MARK: - Binding
     private func setupUI() {
+        inviteCardStackView.backgroundColor = .clear
         kokoIdButton.setRightImageStyle(
             font: .systemFont(ofSize: 13, weight: .regular),
             title: "設定 KOKO ID".localized,
@@ -124,5 +131,34 @@ extension HeaderView {
         selectedButton.showIndicator(color: .hotPink)
         selectedButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .medium)
         unselectedButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+    }
+
+    func updateInvitations(_ invitations: [Friend]) {
+        // 先移除所有舊的 InviteCardView
+        inviteCardStackView.arrangedSubviews.forEach { v in
+            inviteCardStackView.removeArrangedSubview(v)
+            v.removeFromSuperview()
+        }
+        // 新增新的 InviteCardView
+        for invite in invitations {
+            let card = InviteCardView()
+            card.configure(with: invite)
+            card.onAgreeTapped = { [weak self] friend in
+                self?.eventPublisher.send(.invitedFriendAgree(friend))
+            }
+            card.onDeclineTapped = { [weak self] friend in
+                self?.eventPublisher.send(.invitedFriendDecline(friend))
+            }
+            inviteCardStackView.addArrangedSubview(card)
+            card.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                card.leadingAnchor.constraint(equalTo: inviteCardStackView.leadingAnchor),
+                card.trailingAnchor.constraint(equalTo: inviteCardStackView.trailingAnchor)
+            ])
+        }
+        
+        let spacing: CGFloat = invitations.isEmpty ? 0 : 15
+        topStackView.setCustomSpacing(spacing, after: inviteCardStackView)
+        inviteCardStackView.isHidden = invitations.isEmpty
     }
 }
