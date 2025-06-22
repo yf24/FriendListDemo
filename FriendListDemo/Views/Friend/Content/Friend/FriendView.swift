@@ -29,7 +29,9 @@ class FriendView: UIView {
     }()
 
     // MARK: - Data
-    private var friends: [Friend] = []
+    private var allFriends: [Friend] = []
+    private var filteredFriends: [Friend] = []
+    private var currentSearchText: String = ""
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -53,6 +55,8 @@ class FriendView: UIView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         tableView.register(UINib(nibName: FriendListCell.identifier, bundle: nil), forCellReuseIdentifier: FriendListCell.identifier)
+        tableView.register(UINib(nibName: FriendListHeaderView.identifier, bundle: nil), forHeaderFooterViewReuseIdentifier: FriendListHeaderView.identifier)
+        tableView.sectionHeaderTopPadding = 0
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
@@ -66,6 +70,16 @@ class FriendView: UIView {
         emptyStateView.onSetKokoIdLabelTapped = { [weak self] in
             self?.eventPublisher.send(.setKokoId)
         }
+    }
+
+    private func filterFriends(with text: String) {
+        currentSearchText = text
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            filteredFriends = allFriends
+        } else {
+            filteredFriends = allFriends.filter { $0.name.contains(text) }
+        }
+        tableView.reloadData()
     }
 
     // MARK: - Public Method
@@ -85,26 +99,43 @@ class FriendView: UIView {
     }
 
     public func update(with friends: [Friend]) {
-        self.friends = friends
-        tableView.reloadData()
+        self.allFriends = friends
+        filterFriends(with: currentSearchText)
     }
 }
 
 // MARK: - TableView Delegate & DataSource
 extension FriendView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: FriendListHeaderView.identifier) as? FriendListHeaderView else {
+            return nil
+        }
+        header.onSearchTextChanged = { [weak self] text in
+            self?.filterFriends(with: text)
+        }
+        header.onAddFriendTapped = { [weak self] in
+            self?.eventPublisher.send(.addFriend)
+        }
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return filteredFriends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendListCell.identifier, for: indexPath) as? FriendListCell else {
             return UITableViewCell()
         }
-        let friend = friends[indexPath.row]
+        let friend = filteredFriends[indexPath.row]
         cell.configure(with: friend)
         cell.onTransferTapped = { [weak self] in self?.eventPublisher.send(.transfer(friend)) }
         cell.onInviteTapped = { [weak self] in self?.eventPublisher.send(.invite(friend)) }

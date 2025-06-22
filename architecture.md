@@ -27,8 +27,8 @@ FriendPageViewController (容器)
     │       └── Chat Button
     └── Content Views (動態內容)
         ├── FriendView (好友列表)
+        │   ├── UITableView (header: FriendListHeaderView, cell: FriendListCell) (好友列表)
         │   ├── EmptyStateView (空狀態)
-        │   └── FriendListView (好友列表)
         └── ChatView (聊天列表)
             └── ChatListView (聊天列表)
 ```
@@ -54,15 +54,18 @@ HeaderView.KokoIdButton → ViewController → AlertUtils.showAlert()
 ```
 FriendView.onAddFriendTapped → ContainerView → ViewController
 FriendView.onSetKokoIdLabelTapped → ContainerView → ViewController
+FriendView.onTransferTapped → ContainerView → ViewController
+FriendView.onInviteTapped → ContainerView → ViewController
+FriendView.onMoreTapped → ContainerView → ViewController
 ```
 
 ## 🎯 設計原則
 
 ### 1. 責任分離
-- **ViewController**: 事件轉發和協調
+- **ViewController**: 事件轉發和協調、資料流管理
 - **ContainerView**: 內容區域管理
 - **HeaderView**: 靜態 UI 容器
-- **FriendView/ChatView**: 具體內容實作
+- **FriendView/ChatView**: 具體內容實作（如 FriendView 內含 tableView）
 
 ### 2. 事件驅動
 - 使用 closure 回調進行事件傳遞

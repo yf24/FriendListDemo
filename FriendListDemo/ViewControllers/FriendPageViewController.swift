@@ -14,6 +14,7 @@ class FriendPageViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupBindings()
+        setupDismissKeyboardGesture()
         viewModel.loadData(for: .empty)
     }
     
@@ -79,6 +80,16 @@ class FriendPageViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    private func setupDismissKeyboardGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
