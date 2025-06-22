@@ -36,6 +36,7 @@ class FriendPageViewController: UIViewController {
     }
     
     private func setupBindings() {
+        // Header view
         containerView.headerView.onATMButtonTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "ATM", message: "onATMButtonTapped")
         }
@@ -57,11 +58,27 @@ class FriendPageViewController: UIViewController {
         containerView.headerView.onChatButtonTapped = { [weak self] in
             self?.containerView.show(tab: .chat)
         }
+
+        // Firend view - Empty State View
         containerView.onAddFriendTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")
         }
         containerView.onSetKokoIdLabelTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "設定 KOKO ID", message: "onSetKokoIdLabelTapped")
+        }
+
+        // Friend View - Friend List
+        containerView.onTransferTapped = { friend in
+            AlertUtils.showAlert(on: self, title: "轉帳", message: "\(friend)")
+            print("[轉帳] rawData: \(friend)")
+        }
+        containerView.onInviteTapped = { friend in
+            AlertUtils.showAlert(on: self, title: "邀請中", message: "\(friend)")
+            print("[邀請中] rawData: \(friend)")
+        }
+        containerView.onMoreTapped = { friend in
+            AlertUtils.showAlert(on: self, title: "更多", message: "\(friend)")
+            print("[更多] rawData: \(friend)")
         }
     }
 }

@@ -1,9 +1,10 @@
 import UIKit
 
-class FriendListCell: UITableViewCell {
+class FriendListCell: UITableViewCell, ReusableCell {
+    @IBOutlet weak var starImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var starImageView: UIImageView!
+    @IBOutlet weak var functionStackView: UIStackView!
     @IBOutlet weak var transferButton: UIButton!
     @IBOutlet weak var inviteButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
@@ -33,6 +34,17 @@ class FriendListCell: UITableViewCell {
 
     func configure(with friend: Friend) {
         nameLabel.text = friend.name
-        // 其他屬性根據 model 設定
+
+        if friend.status == .inviting { // 轉帳 + 邀請中
+            inviteButton.isHidden = false
+            moreButton.isHidden = true
+            functionStackView.setCustomSpacing(10, after: transferButton)
+        } else { // 轉帳 + more
+            inviteButton.isHidden = true
+            moreButton.isHidden = false
+            functionStackView.setCustomSpacing(15, after: transferButton)
+        }
+
+        starImageView.isHidden = !friend.isTop
     }
 } 

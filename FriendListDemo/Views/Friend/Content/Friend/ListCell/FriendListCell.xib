@@ -4,92 +4,132 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendListCell" customModule="FriendListDemo" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_list_default" translatesAutoresizingMaskIntoConstraints="NO" id="rrA-iZ-hQt">
-                    <rect key="frame" x="50" y="10" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="YsJ-zO-qLX"/>
-                        <constraint firstAttribute="width" constant="40" id="fnR-1V-s81"/>
-                    </constraints>
-                </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLa-01-xH7" userLabel="divider">
-                    <rect key="frame" x="125" y="59" width="240" height="1"/>
-                    <color key="backgroundColor" name="Transfer money"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="55V-q6-cpM"/>
-                        <constraint firstAttribute="width" constant="240" id="UmF-U5-iKD"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="梁立璇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icb-VW-e69">
-                    <rect key="frame" x="105.00000000000001" y="20.333333333333336" width="47.666666666666671" height="19.333333333333336"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" name="lightGrey2"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_star" translatesAutoresizingMaskIntoConstraints="NO" id="qZ9-iL-03F">
-                    <rect key="frame" x="30" y="23" width="14" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="14" id="X7o-ys-PbD"/>
-                        <constraint firstAttribute="width" constant="14" id="lhw-C3-Ads"/>
-                    </constraints>
-                </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgB-vd-XlN">
-                    <rect key="frame" x="219" y="14.666666666666664" width="136" height="30.999999999999993"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFZ-83-Mvx">
-                            <rect key="frame" x="0.0" y="0.0" width="52" height="31"/>
-                            <color key="tintColor" name="hot pink"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="轉帳">
-                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
-                            </buttonConfiguration>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KM-SQ-Xs1">
-                            <rect key="frame" x="52" y="0.0" width="66" height="31"/>
-                            <color key="tintColor" name="lightGrey"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="邀請中">
-                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
-                            </buttonConfiguration>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4N-VW-H5l" userLabel="more butn">
-                            <rect key="frame" x="118" y="0.0" width="18" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="18" id="bMW-py-7qd"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="friend_more"/>
-                        </button>
-                    </subviews>
-                </stackView>
-            </subviews>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="oLa-01-xH7" secondAttribute="bottom" id="AUa-U9-YYb"/>
-                <constraint firstItem="rrA-iZ-hQt" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="EIK-Ya-6eW"/>
-                <constraint firstAttribute="trailing" secondItem="oLa-01-xH7" secondAttribute="trailing" constant="10" id="KNp-MZ-7Iw"/>
-                <constraint firstItem="qZ9-iL-03F" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OAV-zd-GF5"/>
-                <constraint firstItem="Icb-VW-e69" firstAttribute="leading" secondItem="rrA-iZ-hQt" secondAttribute="trailing" constant="15" id="W8h-v3-ZB0"/>
-                <constraint firstItem="rrA-iZ-hQt" firstAttribute="leading" secondItem="qZ9-iL-03F" secondAttribute="trailing" constant="6" id="WxH-d7-lpX"/>
-                <constraint firstAttribute="trailing" secondItem="rgB-vd-XlN" secondAttribute="trailing" constant="20" id="f8V-Ab-mcZ"/>
-                <constraint firstItem="Icb-VW-e69" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gW4-Kk-5Y4"/>
-                <constraint firstItem="rgB-vd-XlN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yCU-bD-QcU"/>
-                <constraint firstItem="qZ9-iL-03F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="yEH-q1-P7c"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="129.00763358778624" y="-169.71830985915494"/>
-        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="en9-Qe-Evc" customClass="FriendListCell" customModule="FriendListDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="en9-Qe-Evc" id="Pdg-Dj-XbW">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_star" translatesAutoresizingMaskIntoConstraints="NO" id="qZ9-iL-03F">
+                        <rect key="frame" x="31" y="23" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="X7o-ys-PbD"/>
+                            <constraint firstAttribute="width" constant="14" id="lhw-C3-Ads"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_list_default" translatesAutoresizingMaskIntoConstraints="NO" id="rrA-iZ-hQt">
+                        <rect key="frame" x="51" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="YsJ-zO-qLX"/>
+                            <constraint firstAttribute="width" constant="40" id="fnR-1V-s81"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="梁立璇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icb-VW-e69">
+                        <rect key="frame" x="106.00000000000001" y="20.333333333333336" width="47.666666666666671" height="19.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" name="lightGrey2"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgB-vd-XlN" userLabel="function stack view">
+                        <rect key="frame" x="217" y="18" width="156" height="24"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFZ-83-Mvx">
+                                <rect key="frame" x="0.0" y="0.0" width="52" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="enI-a1-EAW"/>
+                                </constraints>
+                                <color key="tintColor" name="hot pink"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="轉帳">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1.2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="hot pink"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KM-SQ-Xs1">
+                                <rect key="frame" x="52" y="0.0" width="66" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="c8D-ue-1mP"/>
+                                </constraints>
+                                <color key="tintColor" name="lightGrey"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="邀請中">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1.2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="lightGrey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4N-VW-H5l" userLabel="more butn">
+                                <rect key="frame" x="118" y="0.0" width="38" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="bMW-py-7qd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="friend_more"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="R5f-Zj-1kj"/>
+                        </constraints>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wyd-vK-bun" userLabel="divider">
+                        <rect key="frame" x="106" y="59" width="257" height="1"/>
+                        <color key="backgroundColor" name="Transfer money"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="aZJ-xF-Xec"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Wyd-vK-bun" firstAttribute="leading" secondItem="Icb-VW-e69" secondAttribute="leading" id="0VD-wY-AbZ"/>
+                    <constraint firstItem="rrA-iZ-hQt" firstAttribute="centerY" secondItem="Pdg-Dj-XbW" secondAttribute="centerY" id="1di-H2-gsI"/>
+                    <constraint firstItem="qZ9-iL-03F" firstAttribute="centerY" secondItem="Pdg-Dj-XbW" secondAttribute="centerY" id="2Ug-Kc-Pv5"/>
+                    <constraint firstItem="Icb-VW-e69" firstAttribute="centerY" secondItem="Pdg-Dj-XbW" secondAttribute="centerY" id="6rn-w8-D3Q"/>
+                    <constraint firstItem="rgB-vd-XlN" firstAttribute="centerY" secondItem="Pdg-Dj-XbW" secondAttribute="centerY" id="8jr-BP-FgV"/>
+                    <constraint firstItem="rrA-iZ-hQt" firstAttribute="leading" secondItem="qZ9-iL-03F" secondAttribute="trailing" constant="6" id="NID-jp-gPr"/>
+                    <constraint firstItem="Icb-VW-e69" firstAttribute="leading" secondItem="rrA-iZ-hQt" secondAttribute="trailing" constant="15" id="RBx-tf-l1K"/>
+                    <constraint firstAttribute="bottom" secondItem="Wyd-vK-bun" secondAttribute="bottom" id="dOf-2w-meg"/>
+                    <constraint firstAttribute="trailing" secondItem="rgB-vd-XlN" secondAttribute="trailing" constant="20" id="fM6-GL-tEf"/>
+                    <constraint firstAttribute="trailing" secondItem="Wyd-vK-bun" secondAttribute="trailing" constant="30" id="ga8-Zi-dUk"/>
+                    <constraint firstItem="qZ9-iL-03F" firstAttribute="leading" secondItem="Pdg-Dj-XbW" secondAttribute="leading" constant="31" id="tFF-xa-8PH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="105" minY="0.0" maxX="30" maxY="0.0"/>
+            <connections>
+                <outlet property="avatarImageView" destination="rrA-iZ-hQt" id="EMP-R4-xpr"/>
+                <outlet property="functionStackView" destination="rgB-vd-XlN" id="5er-Qv-LUS"/>
+                <outlet property="inviteButton" destination="9KM-SQ-Xs1" id="ryz-Kf-bNy"/>
+                <outlet property="moreButton" destination="C4N-VW-H5l" id="NEQ-th-F65"/>
+                <outlet property="nameLabel" destination="Icb-VW-e69" id="3TF-2m-NZ1"/>
+                <outlet property="starImageView" destination="qZ9-iL-03F" id="ffl-CO-QkD"/>
+                <outlet property="transferButton" destination="dFZ-83-Mvx" id="Sci-dm-bb1"/>
+            </connections>
+            <point key="canvasLocation" x="129.00763358778624" y="-173.94366197183101"/>
+        </tableViewCell>
     </objects>
     <resources>
         <image name="friend_list_default" width="40" height="40"/>
@@ -107,8 +147,5 @@
         <namedColor name="lightGrey2">
             <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

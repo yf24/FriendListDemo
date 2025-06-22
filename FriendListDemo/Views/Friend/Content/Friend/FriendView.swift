@@ -17,16 +17,19 @@ class FriendView: UIView {
     }()
 
     // MARK: - Action
-    var onTransferTapped: ((Friend) -> Void)?
-    var onInviteTapped: ((Friend) -> Void)?
-    var onMoreTapped: ((Friend) -> Void)?
+    // Friend - Empty State View
     var onAddFriendTapped: (() -> Void)? {
         didSet { emptyStateView.onAddButtonTapped = onAddFriendTapped }
     }
     var onSetKokoIdLabelTapped: (() -> Void)? {
         didSet { emptyStateView.onSetKokoIdLabelTapped = onSetKokoIdLabelTapped }
     }
+    // Friend - Table View Cell
+    var onTransferTapped: ((Friend) -> Void)?
+    var onInviteTapped: ((Friend) -> Void)?
+    var onMoreTapped: ((Friend) -> Void)?
 
+    // MARK: - Data
     private var friends: [Friend] = []
 
     // MARK: - Init
@@ -40,7 +43,8 @@ class FriendView: UIView {
         setupTableView()
         showEmptyState()
     }
-    
+
+    // MARK: - Private Method
     private func setupTableView() {
         addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +54,7 @@ class FriendView: UIView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        tableView.register(UINib(nibName: "FriendListCell", bundle: nil), forCellReuseIdentifier: "FriendListCell")
+        tableView.register(UINib(nibName: FriendListCell.identifier, bundle: nil), forCellReuseIdentifier: FriendListCell.identifier)
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
@@ -80,13 +84,18 @@ class FriendView: UIView {
     }
 }
 
+// MARK: - TableView Delegate & DataSource
 extension FriendView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendListCell", for: indexPath) as? FriendListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendListCell.identifier, for: indexPath) as? FriendListCell else {
             return UITableViewCell()
         }
         let friend = friends[indexPath.row]
