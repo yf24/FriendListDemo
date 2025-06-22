@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class HeaderView: UIView {
     // MARK: - Properties
@@ -23,27 +24,34 @@ class HeaderView: UIView {
         return view
     }()
 
-    // MARK: - Callback Closures
-    var onATMButtonTapped: (() -> Void)?
-    var onTransferButtonTapped: (() -> Void)?
-    var onScanButtonTapped: (() -> Void)?
-    var onAvatarButtonTapped: (() -> Void)?
-    var onFriendButtonTapped: (() -> Void)?
-    var onChatButtonTapped: (() -> Void)?
-    var onKokoIdButtonTapped: (() -> Void)?
-
     // MARK: - Type Control
     enum TabType { case friend, chat }
     private(set) var selectedTab: TabType = .friend
+
+    // MARK: - Event Enum
+    enum Event {
+        case atm
+        case transfer
+        case scan
+        case avatar
+        case friendTab
+        case chatTab
+        case kokoId
+    }
+    // MARK: - Publisher
+    let eventPublisher = PassthroughSubject<Event, Never>()
+
 
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadFromNibToSelf()
+        setupBindings()
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadFromNibToSelf()
+        setupBindings()
     }
     
     // MARK: - Life Cycle
@@ -77,20 +85,28 @@ class HeaderView: UIView {
         updateTabSelection(.friend)
     }
     private func setupBindings() {
-        atmButton.addAction(UIAction { [weak self] _ in self?.onATMButtonTapped?() }, for: .touchUpInside)
-        transferButton.addAction(UIAction { [weak self] _ in self?.onTransferButtonTapped?() }, for: .touchUpInside)
-        scanButton.addAction(UIAction { [weak self] _ in self?.onScanButtonTapped?() }, for: .touchUpInside)
-        kokoIdButton.addAction(UIAction { [weak self] _ in self?.onKokoIdButtonTapped?() }, for: .touchUpInside)
-        avatarButton.addAction(UIAction { [weak self] _ in self?.onAvatarButtonTapped?() }, for: .touchUpInside)
-        
-        friendButton.addAction(UIAction { [weak self] _ in
-            self?.updateTabSelection(.friend)
-            self?.onFriendButtonTapped?()
+        atmButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.atm)
         }, for: .touchUpInside)
-        
+        transferButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.transfer)
+        }, for: .touchUpInside)
+        scanButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.scan)
+        }, for: .touchUpInside)
+        avatarButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.avatar)
+        }, for: .touchUpInside)
+        kokoIdButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.kokoId)
+        }, for: .touchUpInside)
+        friendButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.friendTab)
+            self?.updateTabSelection(.friend)
+        }, for: .touchUpInside)
         chatButton.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.chatTab)
             self?.updateTabSelection(.chat)
-            self?.onChatButtonTapped?()
         }, for: .touchUpInside)
     }
 }

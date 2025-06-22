@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class ContainerView: UIView {
     // MARK: - Properties
@@ -7,24 +8,6 @@ class ContainerView: UIView {
     private lazy var friendView: FriendView = {
         let view = FriendView()
         view.translatesAutoresizingMaskIntoConstraints = false
-
-        // Friend - Empty State View
-        view.onAddFriendTapped = { [weak self] in
-            self?.onAddFriendTapped?()
-        }
-        view.onSetKokoIdLabelTapped = { [weak self] in
-            self?.onSetKokoIdLabelTapped?()
-        }
-        // Friend - Table View Cell
-        view.onTransferTapped = { [weak self] friend in
-            self?.onTransferTapped?(friend)
-        }
-        view.onInviteTapped = { [weak self] friend in
-            self?.onInviteTapped?(friend)
-        }
-        view.onMoreTapped = { [weak self] friend in
-            self?.onMoreTapped?(friend)
-        }
         return view
     }()
     
@@ -43,14 +26,14 @@ class ContainerView: UIView {
         return view
     }()
 
-    // MARK: - Callbacks
-    // Friend - Empty State View
-    var onAddFriendTapped: (() -> Void)?
-    var onSetKokoIdLabelTapped: (() -> Void)?
-    // Friend - Table View Cell
-    var onTransferTapped: ((Friend) -> Void)?
-    var onInviteTapped: ((Friend) -> Void)?
-    var onMoreTapped: ((Friend) -> Void)?
+    // MARK: - Event Enum
+    enum Event {
+        case friend(FriendView.Event)
+        // 未來可擴充 chat/header 事件
+    }
+    // MARK: - Publisher
+    let eventPublisher = PassthroughSubject<Event, Never>()
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Data
     private var friends: [Friend] = []
@@ -60,6 +43,7 @@ class ContainerView: UIView {
         super.init(frame: frame)
         loadFromNibToSelf()
         setupViews()
+        setupBindings()
         // mock 測試
         let mockFriends = [
             Friend(name: "測試好友",
@@ -72,7 +56,6 @@ class ContainerView: UIView {
                    isTop: false,
                    fid: "002",
                    updateDateString: "20240702"),
-
         ]
         updateFriends(mockFriends)
     }
@@ -97,7 +80,15 @@ class ContainerView: UIView {
         ])
         show(tab: .friend)
     }
-    
+
+    private func setupBindings() {
+        friendView.eventPublisher
+            .sink { [weak self] event in
+                self?.eventPublisher.send(.friend(event))
+            }
+            .store(in: &cancellables)
+    }
+
     // MARK: - Public Methods
     public func show(tab: HeaderView.TabType) {
         friendView.isHidden = (tab != .friend)

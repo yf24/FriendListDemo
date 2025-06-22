@@ -15,21 +15,15 @@ class FriendListCell: UITableViewCell, ReusableCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        transferButton.addTarget(self, action: #selector(transferTapped), for: .touchUpInside)
-        inviteButton.addTarget(self, action: #selector(inviteTapped), for: .touchUpInside)
-        moreButton.addTarget(self, action: #selector(moreTapped), for: .touchUpInside)
-    }
-
-    @objc private func transferTapped() {
-        onTransferTapped?()
-    }
-
-    @objc private func inviteTapped() {
-        onInviteTapped?()
-    }
-
-    @objc private func moreTapped() {
-        onMoreTapped?()
+        transferButton.addAction(UIAction { [weak self] _ in
+            self?.onTransferTapped?()
+        }, for: .touchUpInside)
+        inviteButton.addAction(UIAction { [weak self] _ in
+            self?.onInviteTapped?()
+        }, for: .touchUpInside)
+        moreButton.addAction(UIAction { [weak self] _ in
+            self?.onMoreTapped?()
+        }, for: .touchUpInside)
     }
 
     func configure(with friend: Friend) {

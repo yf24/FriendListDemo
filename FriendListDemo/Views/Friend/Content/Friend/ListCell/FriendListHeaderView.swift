@@ -10,14 +10,12 @@ class FriendListHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         searchTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
-        addFriendButton.addTarget(self, action: #selector(addFriendTapped), for: .touchUpInside)
+        addFriendButton.addAction(UIAction { [weak self] _ in
+            self?.onAddFriendTapped?()
+        }, for: .touchUpInside)
     }
 
     @objc private func textChanged() {
         onSearchTextChanged?(searchTextField.text ?? "")
-    }
-
-    @objc private func addFriendTapped() {
-        onAddFriendTapped?()
     }
 } 

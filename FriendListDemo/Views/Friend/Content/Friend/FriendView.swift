@@ -6,8 +6,20 @@
 //
 
 import UIKit
+import Combine
 
 class FriendView: UIView {
+    // MARK: - Event Enum
+    enum Event {
+        case addFriend
+        case setKokoId
+        case transfer(Friend)
+        case invite(Friend)
+        case more(Friend)
+    }
+    // MARK: - Publisher
+    let eventPublisher = PassthroughSubject<Event, Never>()
+
     // MARK: - Properties
     let tableView = UITableView()
     private lazy var emptyStateView: EmptyStateView = {
@@ -15,19 +27,6 @@ class FriendView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
-    // MARK: - Action
-    // Friend - Empty State View
-    var onAddFriendTapped: (() -> Void)? {
-        didSet { emptyStateView.onAddButtonTapped = onAddFriendTapped }
-    }
-    var onSetKokoIdLabelTapped: (() -> Void)? {
-        didSet { emptyStateView.onSetKokoIdLabelTapped = onSetKokoIdLabelTapped }
-    }
-    // Friend - Table View Cell
-    var onTransferTapped: ((Friend) -> Void)?
-    var onInviteTapped: ((Friend) -> Void)?
-    var onMoreTapped: ((Friend) -> Void)?
 
     // MARK: - Data
     private var friends: [Friend] = []
@@ -37,11 +36,10 @@ class FriendView: UIView {
         super.init(frame: frame)
         setupTableView()
         showEmptyState()
+        setupBindings()
     }
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupTableView()
-        showEmptyState()
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Private Method
@@ -61,6 +59,15 @@ class FriendView: UIView {
         tableView.delegate = self
     }
 
+    private func setupBindings() {
+        emptyStateView.onAddButtonTapped = { [weak self] in
+            self?.eventPublisher.send(.addFriend)
+        }
+        emptyStateView.onSetKokoIdLabelTapped = { [weak self] in
+            self?.eventPublisher.send(.setKokoId)
+        }
+    }
+
     // MARK: - Public Method
     public func showEmptyState() {
         addSubview(emptyStateView)
@@ -71,7 +78,6 @@ class FriendView: UIView {
             emptyStateView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         bringSubviewToFront(emptyStateView)
-        emptyStateView.onAddButtonTapped = onAddFriendTapped
     }
 
     public func hideEmptyState() {
@@ -100,9 +106,9 @@ extension FriendView: UITableViewDataSource, UITableViewDelegate {
         }
         let friend = friends[indexPath.row]
         cell.configure(with: friend)
-        cell.onTransferTapped = { [weak self] in self?.onTransferTapped?(friend) }
-        cell.onInviteTapped = { [weak self] in self?.onInviteTapped?(friend) }
-        cell.onMoreTapped = { [weak self] in self?.onMoreTapped?(friend) }
+        cell.onTransferTapped = { [weak self] in self?.eventPublisher.send(.transfer(friend)) }
+        cell.onInviteTapped = { [weak self] in self?.eventPublisher.send(.invite(friend)) }
+        cell.onMoreTapped = { [weak self] in self?.eventPublisher.send(.more(friend)) }
         return cell
     }
 }

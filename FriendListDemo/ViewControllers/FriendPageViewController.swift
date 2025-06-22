@@ -2,12 +2,12 @@ import UIKit
 import Combine
 
 class FriendPageViewController: UIViewController {
-    // MARK: - Properties
     private let viewModel = FriendPageViewModel()
-    private var cancellables = Set<AnyCancellable>()
     
-    // MARK: - UI Components
+    // MARK: - Properties
     private let containerView = ContainerView()
+
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -36,50 +36,49 @@ class FriendPageViewController: UIViewController {
     }
     
     private func setupBindings() {
-        // Header view
-        containerView.headerView.onATMButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "ATM", message: "onATMButtonTapped")
-        }
-        containerView.headerView.onTransferButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "Transfer", message: "onTransferButtonTapped")
-        }
-        containerView.headerView.onScanButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "Scan", message: "onScanButtonTapped")
-        }
-        containerView.headerView.onKokoIdButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "KOKO ID", message: "onKokoIdButtonTapped")
-        }
-        containerView.headerView.onAvatarButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "Avatar", message: "onAvatarButtonTapped")
-        }
-        containerView.headerView.onFriendButtonTapped = { [weak self] in
-            self?.containerView.show(tab: .friend)
-        }
-        containerView.headerView.onChatButtonTapped = { [weak self] in
-            self?.containerView.show(tab: .chat)
-        }
+        containerView.headerView.eventPublisher
+            .sink { [weak self] event in
+                switch event {
+                case .atm:
+                    AlertUtils.showAlert(on: self, title: "ATM", message: "onATMButtonTapped")
+                case .transfer:
+                    AlertUtils.showAlert(on: self, title: "Transfer", message: "onTransferButtonTapped")
+                case .scan:
+                    AlertUtils.showAlert(on: self, title: "Scan", message: "onScanButtonTapped")
+                case .kokoId:
+                    AlertUtils.showAlert(on: self, title: "KOKO ID", message: "onKokoIdButtonTapped")
+                case .avatar:
+                    AlertUtils.showAlert(on: self, title: "Avatar", message: "onAvatarButtonTapped")
+                case .friendTab:
+                    self?.containerView.show(tab: .friend)
+                case .chatTab:
+                    self?.containerView.show(tab: .chat)
+                }
+            }
+            .store(in: &cancellables)
 
-        // Firend view - Empty State View
-        containerView.onAddFriendTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")
-        }
-        containerView.onSetKokoIdLabelTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "設定 KOKO ID", message: "onSetKokoIdLabelTapped")
-        }
-
-        // Friend View - Friend List
-        containerView.onTransferTapped = { friend in
-            AlertUtils.showAlert(on: self, title: "轉帳", message: "\(friend)")
-            print("[轉帳] rawData: \(friend)")
-        }
-        containerView.onInviteTapped = { friend in
-            AlertUtils.showAlert(on: self, title: "邀請中", message: "\(friend)")
-            print("[邀請中] rawData: \(friend)")
-        }
-        containerView.onMoreTapped = { friend in
-            AlertUtils.showAlert(on: self, title: "更多", message: "\(friend)")
-            print("[更多] rawData: \(friend)")
-        }
+        containerView.eventPublisher
+            .sink { [weak self] event in
+                switch event {
+                case .friend(let friendEvent):
+                    switch friendEvent {
+                    case .addFriend:
+                        AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")
+                    case .setKokoId:
+                        AlertUtils.showAlert(on: self, title: "設定 KOKO ID", message: "onSetKokoIdLabelTapped")
+                    case .transfer(let friend):
+                        AlertUtils.showAlert(on: self, title: "轉帳", message: "\(friend)")
+                        print("[轉帳] rawData: \(friend)")
+                    case .invite(let friend):
+                        AlertUtils.showAlert(on: self, title: "邀請中", message: "\(friend)")
+                        print("[邀請中] rawData: \(friend)")
+                    case .more(let friend):
+                        AlertUtils.showAlert(on: self, title: "更多", message: "\(friend)")
+                        print("[更多] rawData: \(friend)")
+                    }
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 
