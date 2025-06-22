@@ -7,7 +7,7 @@ enum FriendListState {
     case friendsWithInvitations
 }
 
-class FriendListViewModel {
+class FriendPageViewModel {
     // MARK: - Published Properties
     @Published var user: User?
     @Published var friends: [Friend] = []

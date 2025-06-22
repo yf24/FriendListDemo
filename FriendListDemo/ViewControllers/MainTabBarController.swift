@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController {
         moneyVC.tabBarItem = UITabBarItem(title: "錢錢", image: UIImage(systemName: "dollarsign.circle"), tag: 0)
         
         // 朋友
-        let friendListVC = FriendListViewController()
+        let friendListVC = FriendPageViewController()
         friendListVC.tabBarItem = UITabBarItem(title: "朋友", image: UIImage(systemName: "person.2"), tag: 1)
         
         // KO

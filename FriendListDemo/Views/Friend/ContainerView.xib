@@ -26,7 +26,7 @@
                         <constraint firstAttribute="height" constant="191" id="181-JT-Krz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-rF-REE" userLabel="Content View" customClass="ContentView" customModule="FriendListDemo" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-rF-REE" userLabel="Content View" customClass="FriendView" customModule="FriendListDemo" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="309" width="393" height="475"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                 </view>

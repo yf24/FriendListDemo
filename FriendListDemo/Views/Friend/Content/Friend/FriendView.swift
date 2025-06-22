@@ -7,22 +7,21 @@
 
 import UIKit
 
-public class ContentView: UIView {
+public class FriendView: UIView {
     // MARK: - Properties
-    @IBOutlet weak var tableView: UITableView!
+    private lazy var emptyStateView: EmptyStateView = {
+        let view = EmptyStateView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    // MARK: - Action
     public var onAddFriendTapped: (() -> Void)? {
         didSet { emptyStateView.onAddButtonTapped = onAddFriendTapped }
     }
     public var onSetKokoIdLabelTapped: (() -> Void)? {
         didSet { emptyStateView.onSetKokoIdLabelTapped = onSetKokoIdLabelTapped }
     }
-
-    // MARK: - Empty State
-    private lazy var emptyStateView: EmptyStateView = {
-        let view = EmptyStateView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
 
     // MARK: - Init
     override init(frame: CGRect) {

@@ -1,9 +1,9 @@
 import UIKit
 import Combine
 
-class FriendListViewController: UIViewController {
+class FriendPageViewController: UIViewController {
     // MARK: - Properties
-    private let viewModel = FriendListViewModel()
+    private let viewModel = FriendPageViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - UI Components
@@ -58,17 +58,17 @@ class FriendListViewController: UIViewController {
         containerView.headerView.onChatButtonTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "Chat", message: "onChatButtonTapped")
         }
-        containerView.contentView.onAddFriendTapped = { [weak self] in
+        containerView.onAddFriendTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")
         }
-        containerView.contentView.onSetKokoIdLabelTapped = { [weak self] in
+        containerView.onSetKokoIdLabelTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "設定 KOKO ID", message: "onSetKokoIdLabelTapped")
         }
     }
 }
 
 // MARK: - UITableViewDelegate & UITableViewDataSource
-extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
+extension FriendPageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.friends.count
     }
