@@ -135,17 +135,17 @@ class FriendPageViewModel {
     
     private func processFriendsWithInvitations(_ allFriends: [Friend]) {
         // 分離好友和邀請
-        friends = allFriends.filter { $0.status == 1 }
-        invitations = allFriends.filter { $0.status == 0 || $0.status == 2 }
+        friends = allFriends.filter { $0.status == .completed }
+        invitations = allFriends.filter { $0.status == .invitedSent || $0.status == .inviting }
         filteredFriends = friends
     }
     
     // MARK: - Helper Methods
     func getTopFriends() -> [Friend] {
-        return friends.filter { $0.isTop == "1" }
+        return friends.filter { $0.isTop }
     }
     
     func getNormalFriends() -> [Friend] {
-        return friends.filter { $0.isTop == "0" }
+        return friends.filter { $0.isTop }
     }
 } 
