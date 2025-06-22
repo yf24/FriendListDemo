@@ -36,7 +36,6 @@ class FriendPageViewController: UIViewController {
     }
     
     private func setupBindings() {
-        // 串接 headerView 所有事件
         containerView.headerView.onATMButtonTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "ATM", message: "onATMButtonTapped")
         }
@@ -53,10 +52,10 @@ class FriendPageViewController: UIViewController {
             AlertUtils.showAlert(on: self, title: "Avatar", message: "onAvatarButtonTapped")
         }
         containerView.headerView.onFriendButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "Friend", message: "onFriendButtonTapped")
+            self?.containerView.show(tab: .friend)
         }
         containerView.headerView.onChatButtonTapped = { [weak self] in
-            AlertUtils.showAlert(on: self, title: "Chat", message: "onChatButtonTapped")
+            self?.containerView.show(tab: .chat)
         }
         containerView.onAddFriendTapped = { [weak self] in
             AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")

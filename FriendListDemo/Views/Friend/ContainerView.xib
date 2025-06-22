@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContainerView" customModule="FriendListDemo" customModuleProvider="target">
             <connections>
-                <outlet property="contentView" destination="5oe-rF-REE" id="1jg-QF-VBb"/>
                 <outlet property="headerView" destination="HbY-a0-1Ka" id="ws0-io-DFr"/>
             </connections>
         </placeholder>
@@ -26,29 +25,18 @@
                         <constraint firstAttribute="height" constant="191" id="181-JT-Krz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-rF-REE" userLabel="Content View" customClass="FriendView" customModule="FriendListDemo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="309" width="393" height="475"/>
-                    <color key="backgroundColor" systemColor="linkColor"/>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="5oe-rF-REE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="15a-dn-pqT"/>
-                <constraint firstItem="5oe-rF-REE" firstAttribute="top" secondItem="HbY-a0-1Ka" secondAttribute="bottom" id="2bI-MH-gkl"/>
                 <constraint firstItem="HbY-a0-1Ka" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="OXi-e2-NDo"/>
-                <constraint firstItem="5oe-rF-REE" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="P2L-Bd-7C0"/>
                 <constraint firstItem="HbY-a0-1Ka" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="S5C-jx-HQV"/>
                 <constraint firstItem="HbY-a0-1Ka" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="djS-pS-gRc"/>
-                <constraint firstItem="5oe-rF-REE" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="wTr-3o-XY5"/>
             </constraints>
             <point key="canvasLocation" x="81.679389312977094" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
