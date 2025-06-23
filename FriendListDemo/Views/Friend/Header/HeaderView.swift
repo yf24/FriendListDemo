@@ -67,7 +67,7 @@ class HeaderView: UIView {
     
     // MARK: - Binding
     private func setupUI() {
-        inviteCardExpandView.backgroundColor = .clear
+        inviteCardExpandView.backgroundColor = .systemBackground
         kokoIdButton.setRightImageStyle(
             font: .systemFont(ofSize: 13, weight: .regular),
             title: "設定 KOKO ID".localized,
