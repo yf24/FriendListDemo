@@ -27,6 +27,9 @@ class HeaderView: UIView {
         view.isHidden = false // 預設顯示，未來可根據狀態控制
         return view
     }()
+    // tab badge
+    private let friendBadge = BadgeView(bgColor: .veryLightPink, textColor: .whiteThree)
+    private let chatBadge = BadgeView(bgColor: .veryLightPink, textColor: .whiteThree)
 
     // MARK: - Type Control
     enum TabType { case friend, chat }
@@ -53,24 +56,15 @@ class HeaderView: UIView {
         super.init(frame: frame)
         loadFromNibToSelf()
         setupBindings()
+        setupUI()
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadFromNibToSelf()
         setupBindings()
-    }
-    
-    // MARK: - Life Cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupBindings()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         setupUI()
     }
-
+    
     // MARK: - Binding
     private func setupUI() {
         inviteCardExpandView.backgroundColor = .clear
@@ -88,6 +82,22 @@ class HeaderView: UIView {
             redDotView.centerYAnchor.constraint(equalTo: kokoIdButton.centerYAnchor),
             redDotView.leadingAnchor.constraint(equalTo: kokoIdButton.trailingAnchor, constant: 15)
         ])
+
+        // add badge
+        addSubview(friendBadge)
+        addSubview(chatBadge)
+        friendBadge.translatesAutoresizingMaskIntoConstraints = false
+        chatBadge.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            friendBadge.heightAnchor.constraint(equalToConstant: 18),
+            friendBadge.centerYAnchor.constraint(equalTo: friendButton.topAnchor, constant: 6),
+            friendBadge.leadingAnchor.constraint(equalTo: friendButton.trailingAnchor, constant: -9.5),
+            chatBadge.heightAnchor.constraint(equalToConstant: 18),
+            chatBadge.centerYAnchor.constraint(equalTo: chatButton.topAnchor, constant: 6),
+            chatBadge.leadingAnchor.constraint(equalTo: chatButton.trailingAnchor, constant: -9.5)
+        ])
+        friendBadge.isHidden = true
+        chatBadge.isHidden = true
 
         updateTabSelection(.friend)
     }
@@ -144,5 +154,18 @@ extension HeaderView {
         let spacing: CGFloat = invitations.isEmpty ? 0 : 15
         topStackView.setCustomSpacing(spacing, after: inviteCardExpandView)
         inviteCardExpandView.isHidden = invitations.isEmpty
+    }
+
+    func updateBadges(friends: [Friend]) {
+        let count = friends.filter { $0.status == .inviting }.count
+        if count > 0 {
+            friendBadge.text = "\(count)"
+            friendBadge.isHidden = false
+        } else {
+            friendBadge.isHidden = true
+        }
+        // 聊天 badge: 固定 99+
+        chatBadge.text = "99+"
+        chatBadge.isHidden = false
     }
 }

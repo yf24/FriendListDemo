@@ -97,6 +97,11 @@ class FriendPageViewModel {
                    isTop: false,
                    fid: "004",
                    updateDateString: "20240704"),
+            Friend(name: "測試邀請好友3",
+                   status: .inviting,
+                   isTop: false,
+                   fid: "005",
+                   updateDateString: "20240705"),
         ]
         updateAllFriendsAndSplit(mockFriends)
     }

@@ -90,6 +90,7 @@ class FriendPageViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] friends, invitations in
                 self?.containerView.updateFriendsAndInvitations(friends: friends, invitations: invitations)
+                self?.containerView.headerView.updateBadges(friends: invitations)
             }
             .store(in: &cancellables)
     }
