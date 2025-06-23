@@ -8,6 +8,11 @@ class InviteCardView: UIView {
     @IBOutlet weak var agreeButton: UIButton!
     @IBOutlet weak var declineButton: UIButton!
 
+    // 必須回傳高度，好讓 expand view 能夠展開真正的大小
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: 70)
+    }
+
     // MARK: - Callback
     var onAgreeTapped: ((Friend) -> Void)?
     var onDeclineTapped: ((Friend) -> Void)?
@@ -53,6 +58,4 @@ class InviteCardView: UIView {
         nameLabel.text = invite.name
         currentInvite = invite
     }
-
-    
 } 

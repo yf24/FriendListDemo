@@ -15,7 +15,7 @@
                 <outlet property="avatarButton" destination="YfY-m3-rxC" id="165-k1-uR2"/>
                 <outlet property="chatButton" destination="KGM-BN-QGk" id="Ut8-TC-x1J"/>
                 <outlet property="friendButton" destination="819-hK-yNI" id="Bbb-vc-wPF"/>
-                <outlet property="inviteCardStackView" destination="Fwf-ME-Z5f" id="GHA-Um-jIW"/>
+                <outlet property="inviteCardExpandView" destination="nSv-uY-ucC" id="SZ7-3S-Nwm"/>
                 <outlet property="kokoIdButton" destination="1Bs-1k-DNG" id="0gf-Ky-Yk9"/>
                 <outlet property="nameLabel" destination="hBV-Eu-3MY" id="QQM-bS-Khs"/>
                 <outlet property="scanButton" destination="tM3-yd-ivz" id="Ztn-ie-Syz"/>
@@ -95,13 +95,10 @@
                                 <constraint firstItem="1Bs-1k-DNG" firstAttribute="leading" secondItem="hBV-Eu-3MY" secondAttribute="leading" id="rDH-wn-jRJ"/>
                             </constraints>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fwf-ME-Z5f" userLabel="Invite Card Stack View">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSv-uY-ucC" userLabel="Invite Expand View" customClass="InviteCardExpandView" customModule="FriendListDemo" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="108" width="616" height="94"/>
                             <color key="backgroundColor" name="frogGreen"/>
-                            <constraints>
-                                <constraint firstAttribute="height" priority="250" constant="80" id="2PO-wl-c8H"/>
-                            </constraints>
-                        </stackView>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xju-hf-zz2">
                             <rect key="frame" x="0.0" y="208" width="616" height="34"/>
                             <subviews>
@@ -138,13 +135,13 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Xju-hf-zz2" secondAttribute="bottom" id="4Wb-V0-5l7"/>
+                        <constraint firstAttribute="trailing" secondItem="nSv-uY-ucC" secondAttribute="trailing" id="4vf-tn-8R7"/>
                         <constraint firstItem="kGV-cz-vW9" firstAttribute="top" secondItem="2av-p7-FaX" secondAttribute="top" id="7Az-hG-esv"/>
                         <constraint firstAttribute="trailing" secondItem="Xju-hf-zz2" secondAttribute="trailing" id="8QU-Ui-bbJ"/>
-                        <constraint firstAttribute="trailing" secondItem="Fwf-ME-Z5f" secondAttribute="trailing" id="DQE-lX-aNJ"/>
                         <constraint firstItem="Xju-hf-zz2" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="Kdw-J5-ulI"/>
+                        <constraint firstItem="nSv-uY-ucC" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="OwL-NZ-xq1"/>
                         <constraint firstItem="kGV-cz-vW9" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="RaT-O1-Q5u"/>
                         <constraint firstAttribute="trailing" secondItem="kGV-cz-vW9" secondAttribute="trailing" id="hg4-R7-c0t"/>
-                        <constraint firstItem="Fwf-ME-Z5f" firstAttribute="leading" secondItem="2av-p7-FaX" secondAttribute="leading" id="x8I-cO-e81"/>
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tM3-yd-ivz">
