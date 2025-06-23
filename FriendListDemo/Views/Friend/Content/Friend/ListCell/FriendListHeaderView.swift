@@ -11,6 +11,9 @@ class FriendListHeaderView: UITableViewHeaderFooterView, ReusableCell {
         super.awakeFromNib()
         setupUI()
         setupBindings()
+        contentView.backgroundColor = .white
+        backgroundView = UIView()
+        backgroundView?.backgroundColor = .white
     }
 
     private func setupUI() {

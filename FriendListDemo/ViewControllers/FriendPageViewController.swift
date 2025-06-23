@@ -2,12 +2,12 @@ import UIKit
 import Combine
 
 class FriendPageViewController: UIViewController {
-    private let viewModel = FriendPageViewModel()
-    
     // MARK: - Properties
-    private let containerView = ContainerView()
-
+    let viewModel = FriendPageViewModel()
     private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - UI Components
+    private let containerView = ContainerView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -15,7 +15,6 @@ class FriendPageViewController: UIViewController {
         setupUI()
         setupBindings()
         setupDismissKeyboardGesture()
-        viewModel.loadData(for: .testData)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,16 +105,3 @@ class FriendPageViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDelegate & UITableViewDataSource
-extension FriendPageViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.friends.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
-        let friend = viewModel.friends[indexPath.row]
-        cell.textLabel?.text = friend.name
-        return cell
-    }
-} 

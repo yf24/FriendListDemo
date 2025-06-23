@@ -161,11 +161,13 @@ extension HeaderView {
         if count > 0 {
             friendBadge.text = "\(count)"
             friendBadge.isHidden = false
+
+            // 聊天 badge: 固定 99+
+            chatBadge.text = "99+"
+            chatBadge.isHidden = false
         } else {
             friendBadge.isHidden = true
+            chatBadge.isHidden = true
         }
-        // 聊天 badge: 固定 99+
-        chatBadge.text = "99+"
-        chatBadge.isHidden = false
     }
 }

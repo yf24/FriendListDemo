@@ -33,16 +33,10 @@ class FriendPageViewModel {
         isLoading = true
         currentState = state
         
-        // 先載入使用者資料
-        apiService.fetchUserData()
-            .sink(receiveCompletion: { [weak self] completion in
-                if case .failure(let error) = completion {
-                    self?.error = error
-                }
-            }, receiveValue: { [weak self] user in
-                self?.user = user
-            })
-            .store(in: &cancellables)
+        // 只有非 empty 狀態才載入使用者資料
+        if state != .empty {
+            loadUserData()
+        }
         
         // 根據狀態載入不同的好友列表
         switch state {
@@ -73,6 +67,19 @@ class FriendPageViewModel {
         } else {
             filteredFriends = friends.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
+    }
+
+    // MARK: - Data Request
+    private func loadUserData() {
+        apiService.fetchUserData()
+            .sink(receiveCompletion: { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.error = error
+                }
+            }, receiveValue: { [weak self] user in
+                self?.user = user
+            })
+            .store(in: &cancellables)
     }
 
     private func loadTestDataSate() {
@@ -168,14 +175,5 @@ class FriendPageViewModel {
             }
         }
         return Array(mergedDict.values)
-    }
-    
-    // MARK: - Helper Methods
-    func getTopFriends() -> [Friend] {
-        return friends.filter { $0.isTop }
-    }
-    
-    func getNormalFriends() -> [Friend] {
-        return friends.filter { !$0.isTop }
     }
 } 
