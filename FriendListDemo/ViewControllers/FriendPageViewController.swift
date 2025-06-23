@@ -84,6 +84,18 @@ class FriendPageViewController: UIViewController {
             }
             .store(in: &cancellables)
 
+        viewModel.$user
+            .receive(on: RunLoop.main)
+            .sink { [weak self] user in
+                if let user = user {
+                    self?.containerView.headerView.updateUser(user)
+                } else {
+                    // for 無好友狀態（順便清空來展示UI)
+                    self?.containerView.headerView.resetUserUI()
+                }
+            }
+            .store(in: &cancellables)
+
         viewModel.$friends
             .combineLatest(viewModel.$invitations)
             .receive(on: RunLoop.main)

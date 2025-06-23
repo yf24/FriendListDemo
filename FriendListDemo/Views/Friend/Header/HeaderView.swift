@@ -170,4 +170,29 @@ extension HeaderView {
             chatBadge.isHidden = true
         }
     }
+
+    func updateUser(_ user: User) {
+        nameLabel.text = user.name
+        let hasKokoId = (user.kokoid?.isEmpty == false)
+        let kokoIdTitle = hasKokoId ? "KOKO ID：\(user.kokoid!)" : "設定 KOKO ID".localized
+        kokoIdButton.setRightImageStyle(
+            font: .systemFont(ofSize: 13, weight: .regular),
+            title: kokoIdTitle,
+            image: UIImage(resource: .kokoIdArrow),
+            imagePadding: 0
+        )
+        redDotView.isHidden = hasKokoId
+    }
+
+    // for 無好友初始狀態
+    func resetUserUI() {
+        nameLabel.text = "紫晽"
+        kokoIdButton.setRightImageStyle(
+            font: .systemFont(ofSize: 13, weight: .regular),
+            title: "設定 KOKO ID".localized,
+            image: UIImage(resource: .kokoIdArrow),
+            imagePadding: 0
+        )
+        redDotView.isHidden = false
+    }
 }

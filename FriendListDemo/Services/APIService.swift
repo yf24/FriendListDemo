@@ -15,7 +15,7 @@ class APIService {
     private let logger = Logger(tag: "APIService", defaultLevel: .info)
     
     /// 獲取使用者資料
-    func fetchUserData() -> AnyPublisher<User, APIError> {
+    func fetchUserData() -> AnyPublisher<UserResponse, APIError> {
         return fetchData(endpoint: "/man.json")
     }
     

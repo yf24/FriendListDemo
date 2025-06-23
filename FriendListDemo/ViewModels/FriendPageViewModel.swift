@@ -33,8 +33,9 @@ class FriendPageViewModel {
         isLoading = true
         currentState = state
         
-        // 只有非 empty 狀態才載入使用者資料
-        if state != .empty {
+        if state == .empty {
+            clearUser()
+        } else {
             loadUserData()
         }
         
@@ -76,10 +77,14 @@ class FriendPageViewModel {
                 if case .failure(let error) = completion {
                     self?.error = error
                 }
-            }, receiveValue: { [weak self] user in
-                self?.user = user
+            }, receiveValue: { [weak self] response in
+                self?.user = response.response.first
             })
             .store(in: &cancellables)
+    }
+
+    private func clearUser() {
+        user = nil
     }
 
     private func loadTestDataSate() {
