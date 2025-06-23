@@ -4,16 +4,17 @@ class MainTabBarController: UITabBarController {
     // for 展示用
     private let friendListVC = FriendPageViewController()
     private var logTextView: UITextView?
-    
+
+    private let koButton = UIButton()
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // for 展示用
         NotificationCenter.default.addObserver(self, selector: #selector(updateLogTextView), name: Logger.logDidUpdateNotification, object: nil)
         setupViewControllers()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        setupTabBarDivider()
+        setupKOButton()
     }
     
     private func setupViewControllers() {
@@ -22,8 +23,8 @@ class MainTabBarController: UITabBarController {
 
         // 錢錢 (for 展示)
         let moneyVC = UIViewController()
+        moneyVC.title = "錢錢".localized
         moneyVC.view.backgroundColor = .white
-        moneyVC.tabBarItem = UITabBarItem(title: "錢錢", image: UIImage(systemName: "dollarsign.circle"), tag: 0)
         // Log TextView
         let logTextView = UITextView()
         logTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,49 +49,88 @@ class MainTabBarController: UITabBarController {
             segment.widthAnchor.constraint(equalToConstant: 300),
             segment.heightAnchor.constraint(equalToConstant: 36)
         ])
-        segment.addTarget(self, action: #selector(scenarioChanged(_:)), for: .valueChanged)
+
+        segment.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            Logger.clearLogBuffer()
+            switch segment.selectedSegmentIndex {
+            case 0:
+                friendListVC.viewModel.loadData(for: .empty)
+            case 1:
+                friendListVC.viewModel.loadData(for: .friendsOnly)
+            case 2:
+                friendListVC.viewModel.loadData(for: .friendsWithInvitations)
+            default:
+                break
+            }
+            self.updateLogTextView()
+        }, for: .valueChanged)
+        moneyVC.tabBarItem = UITabBarItem(title: "錢錢", image: .tabMoney, selectedImage: .tabMoney)
         
         // 朋友
-        friendListVC.tabBarItem = UITabBarItem(title: "朋友", image: UIImage(systemName: "person.2"), tag: 1)
-        
-        // KO
+        friendListVC.tabBarItem = UITabBarItem(title: "朋友", image: .tabFriend, selectedImage: .tabFriend)
+
+        // KO（中間大圖，維持原本合成圖寫法）
         let koVC = UIViewController()
+        koVC.title = "KO".localized
         koVC.view.backgroundColor = .white
-        koVC.tabBarItem = UITabBarItem(title: "KO", image: UIImage(systemName: "bolt.circle"), tag: 2)
-        
+        let koImageView = UIImage(systemName: "bolt.circle")
+        koVC.tabBarItem = UITabBarItem(title: "KO", image: koImageView, tag: 2)
+
         // 記帳
         let accountingVC = UIViewController()
+        accountingVC.title = "記帳".localized
         accountingVC.view.backgroundColor = .white
-        accountingVC.tabBarItem = UITabBarItem(title: "記帳", image: UIImage(systemName: "book"), tag: 3)
-        
+        accountingVC.tabBarItem = UITabBarItem(title: "記帳", image: .tabBookkeeping, selectedImage: .tabBookkeeping)
+
         // 設定
         let settingsVC = UIViewController()
+        settingsVC.title = "設定".localized
         settingsVC.view.backgroundColor = .white
-        settingsVC.tabBarItem = UITabBarItem(title: "設定", image: UIImage(systemName: "gearshape"), tag: 4)
-        
+        // FIXME: 2025.6.24, UI稿上這icon根本沒去背
+        settingsVC.tabBarItem = UITabBarItem(title: "設定", image: .tabSettings, selectedImage: .tabSettings)
+
         viewControllers = [
             UINavigationController(rootViewController: moneyVC),
             UINavigationController(rootViewController: friendListVC),
             UINavigationController(rootViewController: koVC),
             UINavigationController(rootViewController: accountingVC),
             UINavigationController(rootViewController: settingsVC)
-        ]    
+        ]
+
+        // 設定 tab bar tintColor
+        tabBar.tintColor = UIColor(resource: .hotPink)
+        tabBar.unselectedItemTintColor = UIColor(resource: .lightGrey)
     }
 
-    // for 展示
-    @objc private func scenarioChanged(_ sender: UISegmentedControl) {
-        Logger.clearLogBuffer()
-        switch sender.selectedSegmentIndex {
-        case 0:
-            friendListVC.viewModel.loadData(for: .empty)
-        case 1:
-            friendListVC.viewModel.loadData(for: .friendsOnly)
-        case 2:
-            friendListVC.viewModel.loadData(for: .friendsWithInvitations)
-        default:
-            break
-        }
-        updateLogTextView()
+    private func setupTabBarDivider() {
+        let divider = UIView()
+        divider.backgroundColor = .veryLightPink1
+        divider.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(divider)
+        NSLayoutConstraint.activate([
+            divider.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            divider.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            divider.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: -3),
+            divider.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+
+    private func setupKOButton() {
+        koButton.setImage(.tabKO, for: .normal)
+        koButton.backgroundColor = .clear
+        koButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(koButton)
+        NSLayoutConstraint.activate([
+            koButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
+            koButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -20),
+            koButton.widthAnchor.constraint(equalToConstant: 85),
+            koButton.heightAnchor.constraint(equalToConstant: 75)
+        ])
+        view.bringSubviewToFront(koButton)
+        koButton.addAction(UIAction { [weak self] _ in
+            self?.selectedIndex = 2 // KO tab index
+        }, for: .touchUpInside)
     }
 
     @objc private func updateLogTextView() {
