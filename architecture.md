@@ -1,14 +1,146 @@
-# 好友頁面架構設計
+    # 好友頁面整體架構設計（以 MainTab/VC/VM 為主）
 
 ## 📋 需求概述
 
-這是一個好友頁面，包含：
-- 好友列表 + 聊天列表
-- Header 包含用戶資訊和控制面板
-- Header 資料不會因為 tab 切換而改變
-- Header 按鈕（除了 Friend/Chat）不會影響 tab 切換
+- 多 Tab（主頁、好友、聊天、設定等），以 MainTabBarController 為入口。
+- 好友頁（FriendPageViewController）負責好友/聊天列表、邀請、用戶資訊等。
+- MVVM 架構，資料流與事件流分離，UI/資料/事件高度解耦。
 
-## 🏗️ UI 架構層級
+---
+
+## 🏗️ 架構層級（主流程）
+
+```
+MainTabBarController
+└── FriendPageViewController (VC)
+    ├── FriendPageViewModel (VM)
+    └── FriendContainerView (內容管理)
+        ├── FriendHeaderView (靜態 header)
+        │   ├── User Info
+        │   ├── FriendInviteCardView
+        │   ├── FriendInviteCardExpandView
+        │   └── Tab Buttons
+        └── Content Views
+            ├── FriendView (好友列表)
+            └── ChatView (聊天列表)
+```
+
+---
+
+## 🔄 事件與資料流
+
+### 1. Tab Bar 切換
+- MainTabBarController 控制 tab 切換，切換到好友頁時載入 FriendPageViewController。
+
+### 2. VC 與 VM
+- FriendPageViewController 持有 FriendPageViewModel，負責 UI 綁定、事件轉發、資料流管理。
+- VC 訂閱 VM 的 @Published 屬性（user、friends、invitations 等），自動刷新 UI。
+
+### 3. UI 組件事件
+- HeaderView、FriendView、ChatView 事件（如按鈕、下拉刷新）用 Combine publisher/closure 往上拋到 VC。
+- VC 統一處理所有事件，並呼叫 VM 執行資料操作。
+
+### 4. VM 資料操作
+- VM 負責所有資料取得、狀態切換、資料合併、搜尋、邀請同意/拒絕等邏輯。
+- VM 只 expose @Published 屬性，UI 不直接操作 Model。
+
+### 5. UI 更新
+- VC 訂閱 VM 的資料流，收到新資料自動呼叫 ContainerView/FriendView/ChatView 的 update 方法刷新畫面。
+
+---
+
+## 🎯 設計原則
+
+1. **責任分離**  
+   - MainTabBarController：全域 tab 管理
+   - FriendPageViewController：UI/事件協調、資料流管理
+   - FriendPageViewModel：資料取得、狀態管理、商業邏輯
+   - ContainerView/HeaderView/FriendView/ChatView：單純 UI 呈現與事件拋出
+
+2. **事件驅動**  
+   - 所有互動事件都用 Combine publisher/closure 往上拋，VC 統一處理。
+
+3. **資料單向流動**  
+   - VM → VC → UI，UI 不直接改資料，所有狀態變動都回到 VM。
+
+4. **型別安全、可維護**  
+   - Model struct 盡量 immutable，資料變動用新 struct 替換。
+   - VM 層統一管理所有資料與狀態。
+
+---
+
+## 🖥️ 主要程式碼結構
+
+### MainTabBarController
+- 管理多個 tab，切換時載入對應 VC。
+
+### FriendPageViewController
+- 持有 viewModel
+- 訂閱 viewModel 的 @Published 屬性
+- 處理所有 UI 事件（header、content、cell、邀請等）
+- 呼叫 viewModel 執行資料操作
+
+### FriendPageViewModel
+- @Published user、friends、invitations、filteredFriends 等
+- 提供 loadData、acceptInvitation、declineInvitation 等方法
+- 處理所有資料流、狀態切換、搜尋、合併等邏輯
+
+### FriendContainerView
+- 管理 headerView、friendView、chatView
+- 提供 updateFriendsAndInvitations、show(tab:) 等方法
+
+### FriendHeaderView
+- 顯示用戶資訊、邀請卡（含展開狀態）、tab 按鈕
+- 事件用 publisher/closure 往上拋
+
+### FriendView/ChatView
+- 顯示好友/聊天列表
+- 事件（如下拉刷新、cell 按鈕）往上拋
+
+---
+
+## 🔄 事件/資料流範例
+
+```
+[UI 事件] → FriendHeaderView.eventPublisher
+         → FriendPageViewController
+         → viewModel.acceptInvitation(for:)
+         → @Published friends/invitations
+         → VC 訂閱自動刷新 UI
+```
+
+---
+
+## 📝 備註與擴展
+
+- 所有 UI 元件皆用 XIB/code，不用 Storyboard。
+- VM 層可輕鬆擴充 API、資料合併、搜尋、排序等功能。
+- UI/資料/事件高度解耦，方便維護與單元測試。
+- 未來可直接支援 Combine/SwiftUI 資料流。
+
+---
+
+## 🔥 架構圖（主流程）
+
+```mermaid
+graph TD
+    MainTabBarController --> FriendPageViewController
+    FriendPageViewController --> FriendPageViewModel
+    FriendPageViewController --> FriendContainerView
+    FriendContainerView --> FriendHeaderView
+    FriendContainerView --> FriendView
+    FriendContainerView --> ChatView
+    FriendHeaderView -->|eventPublisher| FriendPageViewController
+    FriendView -->|eventPublisher| FriendContainerView
+    FriendContainerView -->|eventPublisher| FriendPageViewController
+    FriendPageViewModel -->|@Published| FriendPageViewController
+```
+
+---
+
+# （以下保留原有細節與未來擴展備註）
+
+## UI 架構層級（細節）
 
 ```
 FriendPageViewController (容器)
@@ -18,36 +150,25 @@ FriendPageViewController (容器)
     │   │   ├── Avatar Button
     │   │   ├── Name Label
     │   │   └── KOKO ID Button
-    │   ├── Control Panel (獨立)
-    │   │   ├── ATM Button
-    │   │   ├── Transfer Button
-    │   │   └── Scan Button
-    │   └── Tab Buttons (影響內容區域)
+    │   ├── FriendInviteCardExpandView (展開狀態)
+    │   │   └── FriendInviteCardView (邀請卡片)
+    │   └── Tab Buttons
     │       ├── Friend Button
     │       └── Chat Button
     └── Content Views (動態內容)
         ├── FriendView (好友列表)
-        │   ├── UITableView (header: FriendListHeaderView, cell: FriendListCell) (好友列表)
-        │   ├── EmptyStateView (空狀態)
+        │   ├── UITableView (header: FriendListHeaderView, cell: FriendListCell)
+        │   └── EmptyStateView (空狀態)
         └── ChatView (聊天列表)
             └── ChatListView (聊天列表)
 ```
 
-## 🔄 事件流程
+## 事件流程（細節）
 
 ### Tab 切換流程
 ```
 HeaderView.FriendButton → ViewController → ContainerView.show(tab: .friend)
 HeaderView.ChatButton → ViewController → ContainerView.show(tab: .chat)
-```
-
-### 其他按鈕流程
-```
-HeaderView.ATMButton → ViewController → AlertUtils.showAlert()
-HeaderView.TransferButton → ViewController → AlertUtils.showAlert()
-HeaderView.ScanButton → ViewController → AlertUtils.showAlert()
-HeaderView.AvatarButton → ViewController → AlertUtils.showAlert()
-HeaderView.KokoIdButton → ViewController → AlertUtils.showAlert()
 ```
 
 ### 內容區域事件
@@ -59,75 +180,10 @@ FriendView.onInviteTapped → ContainerView → ViewController
 FriendView.onMoreTapped → ContainerView → ViewController
 ```
 
-## 🎯 設計原則
-
-### 1. 責任分離
-- **ViewController**: 事件轉發和協調、資料流管理
-- **ContainerView**: 內容區域管理
-- **HeaderView**: 靜態 UI 容器
-- **FriendView/ChatView**: 具體內容實作（如 FriendView 內含 tableView）
-
-### 2. 事件驅動
-- 使用 closure 回調進行事件傳遞
-- 避免直接操作其他 View
-- 透過 ViewController 進行事件轉發
-
-### 3. 狀態管理
-- Header 狀態獨立，不受 tab 切換影響
-- 內容區域狀態由 ContainerView 管理
-- 使用 `isHidden` 控制內容顯示
-
-## 💻 程式碼範例
-
-### ViewController 事件綁定
-```swift
-// Tab 切換
-containerView.headerView.onFriendButtonTapped = { [weak self] in
-    self?.containerView.show(tab: .friend)
-}
-containerView.headerView.onChatButtonTapped = { [weak self] in
-    self?.containerView.show(tab: .chat)
-}
-
-// 其他按鈕
-containerView.headerView.onATMButtonTapped = { [weak self] in
-    AlertUtils.showAlert(on: self, title: "ATM", message: "onATMButtonTapped")
-}
-
-// 內容區域事件
-containerView.onAddFriendTapped = { [weak self] in
-    AlertUtils.showAlert(on: self, title: "加好友", message: "onAddFriendTapped")
-}
-```
-
-### ContainerView Tab 管理
-```swift
-public func show(tab: HeaderView.TabType) {
-    friendView.isHidden = (tab != .friend)
-    chatView.isHidden = (tab != .chat)
-}
-```
-
-## 🔄 未來擴展考慮
-
-### MVVM 資料綁定（待實作）
-```
-ViewModel → ViewController → UI Components
-```
-
-### 搜尋功能（待實作）
-```
-HeaderView.SearchBar → ViewController → ViewModel → Filtered Data
-```
-
-### 狀態管理（待實作）
-```
-Empty State → Friends Only → Friends with Invitations
-```
+## 未來擴展考慮
+- MVVM 資料綁定、搜尋功能、狀態管理等皆可彈性擴充
+- 保持架構彈性，避免過度設計
 
 ## 📝 備註
 
-- 目前專注於 UI 基礎建設
-- 使用方案 A（直接方法呼叫）而非方案 B（屬性綁定）
 - 符合當前需求，避免過度設計
-- 為未來 MVVM 和 Combine 實作預留擴展空間 
