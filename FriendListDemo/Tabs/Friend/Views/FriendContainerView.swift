@@ -1,9 +1,9 @@
 import UIKit
 import Combine
 
-class ContainerView: UIView {
+class FriendContainerView: UIView {
     // MARK: - Properties
-    @IBOutlet weak var headerView: HeaderView!
+    @IBOutlet weak var headerView: FriendHeaderView!
     // Content Views
     private lazy var friendView: FriendView = {
         let view = FriendView()
@@ -76,7 +76,7 @@ class ContainerView: UIView {
     }
 
     // MARK: - Public Methods
-    public func show(tab: HeaderView.TabType) {
+    public func show(tab: FriendHeaderView.TabType) {
         friendView.isHidden = (tab != .friend)
         chatView.isHidden = (tab != .chat)
     }

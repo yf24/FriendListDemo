@@ -1,9 +1,9 @@
 import UIKit
 
-class InviteCardExpandView: UIView {
+class FriendInviteCardExpandView: UIView {
     // MARK: - Properties
     private var isExpanded: Bool = false
-    private var cardViews: [InviteCardView] = []
+    private var cardViews: [FriendInviteCardView] = []
     private let shrink: CGFloat = 10
     private let yOffset: CGFloat = 8
     private let maxStack = 2 // 收合時最多顯示兩層
@@ -29,7 +29,7 @@ class InviteCardExpandView: UIView {
         cardViews.forEach { $0.removeFromSuperview() }
         cardViews.removeAll()
         for invite in invitations {
-            let card = InviteCardView()
+            let card = FriendInviteCardView()
             card.configure(with: invite)
             card.onAgreeTapped = { [weak self] friend in
                 self?.onAgreeTapped?(friend)
@@ -155,7 +155,7 @@ class InviteCardExpandView: UIView {
 }
 
 // MARK: - UIGestureRecognizerDelegate
-extension InviteCardExpandView: UIGestureRecognizerDelegate {
+extension FriendInviteCardExpandView: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         // 如果點到 UIButton（或其子 view），就不處理 tap
         var view = touch.view

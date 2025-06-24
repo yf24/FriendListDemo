@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderView" customModule="FriendListDemo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendHeaderView" customModule="FriendListDemo" customModuleProvider="target">
             <connections>
                 <outlet property="atmButton" destination="NmR-bJ-4a6" id="Fx5-li-jNV"/>
                 <outlet property="avatarButton" destination="YfY-m3-rxC" id="165-k1-uR2"/>
@@ -96,7 +96,7 @@
                                 <constraint firstItem="1Bs-1k-DNG" firstAttribute="leading" secondItem="hBV-Eu-3MY" secondAttribute="leading" id="rDH-wn-jRJ"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSv-uY-ucC" userLabel="Invite Expand View" customClass="InviteCardExpandView" customModule="FriendListDemo" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSv-uY-ucC" userLabel="Invite Expand View" customClass="FriendInviteCardExpandView" customModule="FriendListDemo" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="108" width="616" height="94"/>
                             <color key="backgroundColor" name="frogGreen"/>
                         </view>

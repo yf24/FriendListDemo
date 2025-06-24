@@ -1,6 +1,6 @@
 import UIKit
 
-class InviteCardView: UIView {
+class FriendInviteCardView: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

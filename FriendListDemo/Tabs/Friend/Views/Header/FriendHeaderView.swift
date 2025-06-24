@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class HeaderView: UIView {
+class FriendHeaderView: UIView {
     // MARK: - Properties
     // nav button
     @IBOutlet weak var atmButton: UIButton!
@@ -14,7 +14,7 @@ class HeaderView: UIView {
     @IBOutlet weak var kokoIdButton: UIButton!
     @IBOutlet weak var avatarButton: UIButton!
     // invite area
-    @IBOutlet weak var inviteCardExpandView: InviteCardExpandView!
+    @IBOutlet weak var inviteCardExpandView: FriendInviteCardExpandView!
     // control panel
     @IBOutlet weak var friendButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
@@ -135,7 +135,7 @@ class HeaderView: UIView {
 }
 
 // MARK: - Public API
-extension HeaderView {
+extension FriendHeaderView {
     func updateTabSelection(_ tab: TabType) {
         selectedTab = tab
         // 先移除所有 indicator

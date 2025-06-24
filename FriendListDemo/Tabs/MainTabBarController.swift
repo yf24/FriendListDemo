@@ -87,7 +87,6 @@ class MainTabBarController: UITabBarController {
         let settingsVC = UIViewController()
         settingsVC.title = "設定".localized
         settingsVC.view.backgroundColor = .white
-        // FIXME: 2025.6.24, UI稿上這icon根本沒去背
         settingsVC.tabBarItem = UITabBarItem(title: "設定", image: .tabSettings, selectedImage: .tabSettings)
 
         viewControllers = [

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InviteCardView" customModule="FriendListDemo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendInviteCardView" customModule="FriendListDemo" customModuleProvider="target">
             <connections>
                 <outlet property="agreeButton" destination="d7y-C2-3Nt" id="ylM-MQ-Kmb"/>
                 <outlet property="avatarImageView" destination="sEb-vr-cu8" id="LPA-Tm-Gvd"/>

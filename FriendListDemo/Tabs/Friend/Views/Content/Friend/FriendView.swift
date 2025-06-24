@@ -22,8 +22,8 @@ class FriendView: UIView {
 
     // MARK: - Properties
     let tableView = UITableView()
-    private lazy var emptyStateView: EmptyStateView = {
-        let view = EmptyStateView()
+    private lazy var emptyStateView: FriendEmptyView = {
+        let view = FriendEmptyView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -7,7 +7,7 @@ class FriendPageViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - UI Components
-    private let containerView = ContainerView()
+    private let containerView = FriendContainerView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

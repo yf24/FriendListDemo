@@ -1,6 +1,6 @@
 import UIKit
 
-class EmptyStateView: UIView {
+class FriendEmptyView: UIView {
     // MARK: - Properties
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
