@@ -30,6 +30,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3A52955A2E0AA6A100136AA1 /* Exceptions for "FriendListDemo" folder in "FriendListDemoTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Extension/Date+Utils.swift",
+				"Extension/UInt64+TimeUnit.swift",
+			);
+			target = 3A5A45252DFBED76002E330D /* FriendListDemoTests */;
+		};
 		3A5A45382DFBED76002E330D /* Exceptions for "FriendListDemo" folder in "FriendListDemo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -44,6 +52,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				3A5A45382DFBED76002E330D /* Exceptions for "FriendListDemo" folder in "FriendListDemo" target */,
+				3A52955A2E0AA6A100136AA1 /* Exceptions for "FriendListDemo" folder in "FriendListDemoTests" target */,
 			);
 			path = FriendListDemo;
 			sourceTree = "<group>";
