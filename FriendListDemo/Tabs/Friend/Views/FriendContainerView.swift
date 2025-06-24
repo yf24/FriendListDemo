@@ -90,4 +90,8 @@ class FriendContainerView: UIView {
         }
         headerView.updateInvitations(invitations)
     }
+
+    public func endFriendRefreshing() {
+        friendView.endRefreshing()
+    }
 } 

@@ -16,6 +16,7 @@ class FriendView: UIView {
         case transfer(Friend)
         case invite(Friend)
         case more(Friend)
+        case refresh
     }
     // MARK: - Publisher
     let eventPublisher = PassthroughSubject<Event, Never>()
@@ -27,6 +28,7 @@ class FriendView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Data
     private var allFriends: [Friend] = []
@@ -61,6 +63,7 @@ class FriendView: UIView {
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.refreshControl = refreshControl
     }
 
     private func setupBindings() {
@@ -70,6 +73,9 @@ class FriendView: UIView {
         emptyStateView.onSetKokoIdLabelTapped = { [weak self] in
             self?.eventPublisher.send(.setKokoId)
         }
+        refreshControl.addAction(UIAction { [weak self] _ in
+            self?.eventPublisher.send(.refresh)
+        }, for: .valueChanged)
     }
 
     private func filterFriends(with text: String) {
@@ -101,6 +107,10 @@ class FriendView: UIView {
     public func update(with friends: [Friend]) {
         self.allFriends = friends
         filterFriends(with: currentSearchText)
+    }
+
+    public func endRefreshing() {
+        refreshControl.endRefreshing()
     }
 }
 

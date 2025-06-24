@@ -79,6 +79,9 @@ class FriendPageViewController: UIViewController {
                     case .more(let friend):
                         AlertUtils.showAlert(on: self, title: "更多", message: "\(friend)")
                         print("[更多] rawData: \(friend)")
+                    case .refresh:
+                        guard let self = self else { return }
+                        self.viewModel.loadData(for: self.viewModel.currentState)
                     }
                 }
             }
@@ -102,6 +105,7 @@ class FriendPageViewController: UIViewController {
             .sink { [weak self] friends, invitations in
                 self?.containerView.updateFriendsAndInvitations(friends: friends, invitations: invitations)
                 self?.containerView.headerView.updateBadges(friends: invitations)
+                self?.containerView.endFriendRefreshing()
             }
             .store(in: &cancellables)
     }
