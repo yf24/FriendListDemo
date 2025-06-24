@@ -75,7 +75,7 @@ class MainTabBarController: UITabBarController {
         koVC.title = "KO".localized
         koVC.view.backgroundColor = .white
         let koImageView = UIImage(systemName: "bolt.circle")
-        koVC.tabBarItem = UITabBarItem(title: "KO", image: koImageView, tag: 2)
+        koVC.tabBarItem = UITabBarItem(title: "KO", image: koImageView, selectedImage: koImageView)
 
         // 記帳
         let accountingVC = UIViewController()
