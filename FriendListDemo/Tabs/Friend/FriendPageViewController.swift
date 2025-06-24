@@ -54,9 +54,9 @@ class FriendPageViewController: UIViewController {
                 case .chatTab:
                     self?.containerView.show(tab: .chat)
                 case .invitedFriendAgree(let friend):
-                    AlertUtils.showAlert(on: self, title: "同意邀請", message: "\(friend.name)")
+                    self?.viewModel.acceptInvitation(for: friend)
                 case .invitedFriendDecline(let friend):
-                    AlertUtils.showAlert(on: self, title: "拒絕邀請", message: "\(friend.name)")
+                    self?.viewModel.declineInvitation(for: friend)
                 }
             }
             .store(in: &cancellables)

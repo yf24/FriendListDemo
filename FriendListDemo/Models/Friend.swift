@@ -28,12 +28,12 @@ struct Friend: Codable {
         case updateDate = "updateDate"
     }
     // internal init for mock/testing
-    init(name: String, status: FriendStatus, isTop: Bool, fid: String, updateDateString: String) {
+    init(name: String, status: FriendStatus, isTop: Bool, fid: String, updateDate: Date) {
         self.name = name
         self.status = status
         self.isTop = isTop
         self.fid = fid
-        self.updateDate = Friend.parseDate(updateDateString)
+        self.updateDate = updateDate
     }
 
     init(from decoder: Decoder) throws {

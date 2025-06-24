@@ -51,6 +51,26 @@ class FriendPageViewModel {
             loadFriendsWithInvitationsState()
         }
     }
+
+    func acceptInvitation(for friend: Friend) {
+        if let targetIndex = allFriends.firstIndex(where: { $0.fid == friend.fid }) {
+            let oldFriend = allFriends[targetIndex]
+            let newFriend = Friend(
+                name: oldFriend.name,
+                status: .completed,
+                isTop: oldFriend.isTop,
+                fid: oldFriend.fid,
+                updateDate: oldFriend.updateDate
+            )
+            allFriends[targetIndex] = newFriend
+            updateAllFriendsAndSplit(allFriends)
+        }
+    }
+    
+    func declineInvitation(for friend: Friend) {
+        allFriends.removeAll { $0.fid == friend.fid }
+        updateAllFriendsAndSplit(allFriends)
+    }
     
     // MARK: - Private Methods
     private func setupSearchBinding() {
@@ -88,20 +108,23 @@ class FriendPageViewModel {
     }
 
     private func loadTestDataSate() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         let mockFriends = [
-            Friend(name: "測試好友", status: .invitedSent, isTop: true, fid: "001", updateDateString: "20240701"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDateString: "20240702"),
-            Friend(name: "測試邀請好友1", status: .inviting, isTop: false, fid: "003", updateDateString: "20240703"),
-            Friend(name: "測試邀請好友2", status: .inviting, isTop: false, fid: "004", updateDateString: "20240704"),
-            Friend(name: "測試邀請好友3", status: .inviting, isTop: false, fid: "005", updateDateString: "20240705"),
+            Friend(name: "測試好友", status: .invitedSent, isTop: true, fid: "001", updateDate: formatter.date(from: "20240701")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試好友2", status: .completed, isTop: false, fid: "002", updateDate: formatter.date(from: "20240702")!),
+            Friend(name: "測試邀請好友1", status: .inviting, isTop: false, fid: "003", updateDate: formatter.date(from: "20240703")!),
+            Friend(name: "測試邀請好友2", status: .inviting, isTop: false, fid: "004", updateDate: formatter.date(from: "20240704")!),
+            Friend(name: "測試邀請好友3", status: .inviting, isTop: false, fid: "005", updateDate: formatter.date(from: "20240705")!),
         ]
         updateAllFriendsAndSplit(mockFriends)
     }
