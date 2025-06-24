@@ -169,16 +169,21 @@ class FriendPageViewModel {
     }
     
     private func mergeFriendLists(_ list1: [Friend], _ list2: [Friend]) -> [Friend] {
-        var mergedDict: [String: Friend] = [:]
+        var seen = Set<String>()
+        var result: [Friend] = []
         for friend in list1 + list2 {
-            if let existingFriend = mergedDict[friend.fid] {
-                if friend.updateDate > existingFriend.updateDate {
-                    mergedDict[friend.fid] = friend
-                }
+            if !seen.contains(friend.fid) {
+                result.append(friend)
+                seen.insert(friend.fid)
             } else {
-                mergedDict[friend.fid] = friend
+                // 如果有重複 fid，根據 updateDate 決定要不要替換
+                if let idx = result.firstIndex(where: { $0.fid == friend.fid }) {
+                    if friend.updateDate > result[idx].updateDate {
+                        result[idx] = friend
+                    }
+                }
             }
         }
-        return Array(mergedDict.values)
+        return result
     }
 } 
