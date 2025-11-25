@@ -8,33 +8,75 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationStack {
-//                FriendsView()
-                View()
-            }
-            .tabItem {
-                Image(systemName: "person.2.fill")
-                Text("朋友")
-            }
-            .tag(0)
-            
-            NavigationStack {
-//                ChatListView()
-                View()
-            }
-            .tabItem {
-                Image(systemName: "message.fill")
-                Text("聊天")
-            }
-            .tag(1)
-            
-            // ... 其他 tabs
+            moneyTab
+            friendTab
+            koTab
+            bookkeepingTab
+            settingsTab
         }
-        .tint(.pink) // Tab 選中顏色
+        .tint(Color(.hotPink))
+    }
+}
+
+// MARK: - Tabs
+extension MainTabView {
+    private var moneyTab: some View {
+        NavigationStack {
+            Text("錢錢頁面")
+        }
+        .tabItem {
+            Image(.tabMoney)
+            Text("錢錢")
+        }
+        .tag(1)
+    }
+    
+    private var friendTab: some View {
+        NavigationStack {
+            Text("朋友頁面")
+        }
+        .tabItem {
+            Image(.tabFriend)
+            Text("朋友")
+        }
+        .tag(2)
+    }
+    
+    private var koTab: some View {
+        NavigationStack {
+            Text("KO 頁面")
+        }
+        .tabItem {
+            Image(.tabKO)
+            Text("KO")
+        }
+        .tag(3)
+    }
+    
+    private var bookkeepingTab: some View {
+        NavigationStack {
+            Text("記帳頁面")
+        }
+        .tabItem {
+            Image(.tabBookkeeping)
+            Text("記帳")
+        }
+        .tag(4)
+    }
+    
+    private var settingsTab: some View {
+        NavigationStack {
+            Text("設定頁面")
+        }
+        .tabItem {
+            Image(.tabSettings)
+            Text("設定")
+        }
+        .tag(5)
     }
 }
 
