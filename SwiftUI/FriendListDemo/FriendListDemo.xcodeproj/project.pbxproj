@@ -19,6 +19,7 @@
 		F51535422ECC019900614BC1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F515352F2ECC019900614BC1 /* Logger.swift */; };
 		F51535432ECC019900614BC1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51535322ECC019900614BC1 /* MainTabView.swift */; };
 		F51535442ECC019900614BC1 /* FriendListDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51535332ECC019900614BC1 /* FriendListDemoApp.swift */; };
+		F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		F51B50E12EC7213700C98C6C /* FriendListDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendListDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51B50EE2EC7213900C98C6C /* FriendListDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendListDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51B50F82EC7213900C98C6C /* FriendListDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendListDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -163,6 +165,7 @@
 		F51535612ECF0AA800614BC1 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				F5E6F9332EDD897C00A96EBF /* Friend */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -185,6 +188,38 @@
 				F51B50F82EC7213900C98C6C /* FriendListDemoUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F5E6F9332EDD897C00A96EBF /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				F5E6F9382EE0352900A96EBF /* Header */,
+				F5E6F93A2EE0357E00A96EBF /* Chat */,
+				F5E6F9392EE0357700A96EBF /* List */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		F5E6F9382EE0352900A96EBF /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		F5E6F9392EE0357700A96EBF /* List */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		F5E6F93A2EE0357E00A96EBF /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +372,7 @@
 				F515353C2ECC019900614BC1 /* UIButton+Utils.swift in Sources */,
 				F515353D2ECC019900614BC1 /* UInt64+TimeUnit.swift in Sources */,
 				F515353E2ECC019900614BC1 /* UIView+Utils.swift in Sources */,
+				F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */,
 				F515353F2ECC019900614BC1 /* Friend.swift in Sources */,
 				F51535402ECC019900614BC1 /* User.swift in Sources */,
 				F51535412ECC019900614BC1 /* APIService.swift in Sources */,
