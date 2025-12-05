@@ -22,6 +22,8 @@
 		F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */; };
 		F5E6F93C2EE0393100A96EBF /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F93B2EE0393100A96EBF /* FriendView.swift */; };
 		F5E6F93E2EE0394600A96EBF /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F93D2EE0394600A96EBF /* FriendViewModel.swift */; };
+		F5E6F9422EE2BE3400A96EBF /* BadgeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9412EE2BE3400A96EBF /* BadgeModifier.swift */; };
+		F5E6F9442EE2BE4200A96EBF /* UnderlineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9432EE2BE4000A96EBF /* UnderlineModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendHeaderView.swift; sourceTree = "<group>"; };
 		F5E6F93B2EE0393100A96EBF /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
 		F5E6F93D2EE0394600A96EBF /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
+		F5E6F9412EE2BE3400A96EBF /* BadgeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeModifier.swift; sourceTree = "<group>"; };
+		F5E6F9432EE2BE4000A96EBF /* UnderlineModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -113,6 +117,7 @@
 				F515355F2ECF0A8800614BC1 /* Utilities */,
 				F515355E2ECF0A7200614BC1 /* Services */,
 				F51535512ECF0A4800614BC1 /* Models */,
+				F5E6F9402EE2BE0800A96EBF /* UI Components */,
 				F51535602ECF0A9B00614BC1 /* Views */,
 				F51535312ECC019900614BC1 /* Assets.xcassets */,
 				F51535332ECC019900614BC1 /* FriendListDemoApp.swift */,
@@ -194,6 +199,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F5E1C83B2EE6B464004EAE8E /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				F5E6F9412EE2BE3400A96EBF /* BadgeModifier.swift */,
+				F5E6F9432EE2BE4000A96EBF /* UnderlineModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
 		F5E6F9332EDD897C00A96EBF /* Friend */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +248,14 @@
 				F5E6F93A2EE0357E00A96EBF /* Chat */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		F5E6F9402EE2BE0800A96EBF /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				F5E1C83B2EE6B464004EAE8E /* Modifier */,
+			);
+			path = "UI Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +405,7 @@
 			files = (
 				F515353A2ECC019900614BC1 /* Date+Utils.swift in Sources */,
 				F515353B2ECC019900614BC1 /* String+Utils.swift in Sources */,
+				F5E6F9442EE2BE4200A96EBF /* UnderlineModifier.swift in Sources */,
 				F5E6F93E2EE0394600A96EBF /* FriendViewModel.swift in Sources */,
 				F515353C2ECC019900614BC1 /* UIButton+Utils.swift in Sources */,
 				F515353D2ECC019900614BC1 /* UInt64+TimeUnit.swift in Sources */,
@@ -390,6 +413,7 @@
 				F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */,
 				F5E6F93C2EE0393100A96EBF /* FriendView.swift in Sources */,
 				F515353F2ECC019900614BC1 /* Friend.swift in Sources */,
+				F5E6F9422EE2BE3400A96EBF /* BadgeModifier.swift in Sources */,
 				F51535402ECC019900614BC1 /* User.swift in Sources */,
 				F51535412ECC019900614BC1 /* APIService.swift in Sources */,
 				F51535422ECC019900614BC1 /* Logger.swift in Sources */,

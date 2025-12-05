@@ -7,8 +7,14 @@
 
 import SwiftUI
 
-enum FriendHeaderAction {
-    case atmTap, transferTap, scanTap, avatarTap, kokoIdTap, friendTap, chatTap
+extension FriendHeaderView {
+    enum Tab {
+        case friend, chat
+    }
+    
+    enum Action {
+        case atmTap, transferTap, scanTap, avatarTap, kokoIdTap, friendTap, chatTap
+    }
 }
 
 struct FriendHeaderView: View {
@@ -16,7 +22,10 @@ struct FriendHeaderView: View {
     var userName: String = "紫晽"
     var kokoId: String? = nil  // nil 時顯示「設定 KOKO ID」
     
-    var onAction: (FriendHeaderAction) -> Void
+    // 選中狀態
+    @State private var selectedTab: Tab = .friend
+    
+    var onAction: (Action) -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -71,7 +80,7 @@ extension FriendHeaderView {
             VStack(alignment: .leading, spacing: 8) {
                 Text(userName)
                     .font(.system(size: 17, weight: .medium))
-                    .foregroundColor(Color.lightGrey2)
+                    .foregroundColor(.lightGrey2)
                 
                 Button(action: { onAction(.kokoIdTap) }) {
                     kokoIdLabel
@@ -120,24 +129,45 @@ extension FriendHeaderView {
     
     /// 好友/聊天 切換按鈕
     private var controlPanelView: some View {
-        // FIXME: 小tab選到的底線還沒做
-        HStack(spacing: 0) {
-            Button(action: { onAction(.friendTap) }) {
-                Text("好友")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(Color.lightGrey2)
-                    .frame(width: 50, height: 34)
+        HStack(spacing: 6) {
+            tabButton(
+                title: "好友",
+                badgeCount: 2,
+                isSelected: selectedTab == .friend
+            ) {
+                selectedTab = .friend
+                onAction(.friendTap)
             }
             
-            Button(action: { onAction(.chatTap) }) {
-                Text("聊天")
-                    .font(.system(size: 13))
-                    .foregroundColor(Color.lightGrey2)
-                    .frame(width: 50, height: 34)
+            tabButton(
+                title: "聊天",
+                badgeCount: 99,
+                isSelected: selectedTab == .chat
+            ) {
+                selectedTab = .chat
+                onAction(.chatTap)
             }
+            
+            Spacer()
         }
         .padding(.leading, 20)
-//        .frame(height: 34)
+        .frame(height: 34)
+    }
+    
+    private func tabButton(
+        title: String,
+        badgeCount: Int,
+        isSelected: Bool,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 13, weight: isSelected ? .medium : .regular))
+                .foregroundColor(.lightGrey2)
+                .frame(width: 50, height: 34)
+                .applyBadge(count: badgeCount)
+                .applyUnderline(isSelected: isSelected)
+        }
     }
 }
 

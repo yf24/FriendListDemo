@@ -8,7 +8,7 @@
 import Combine
 
 class FriendViewModel: ObservableObject {
-    let actionSubject = PassthroughSubject<FriendHeaderAction, Never>()
+    let actionSubject = PassthroughSubject<FriendHeaderView.Action, Never>()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -19,7 +19,7 @@ class FriendViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func handle(_ action: FriendHeaderAction) {
+    private func handle(_ action: FriendHeaderView.Action) {
         switch action {
         case .atmTap:
             print("atmTap")

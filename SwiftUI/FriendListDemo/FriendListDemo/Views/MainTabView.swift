@@ -37,7 +37,7 @@ extension MainTabView {
     
     private var friendTab: some View {
         NavigationStack {
-            Text("朋友頁面")
+            FriendView()
         }
         .tabItem {
             Image(.tabFriend)
