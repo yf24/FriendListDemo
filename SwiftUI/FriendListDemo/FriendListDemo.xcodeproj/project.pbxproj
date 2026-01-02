@@ -19,6 +19,8 @@
 		F51535422ECC019900614BC1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F515352F2ECC019900614BC1 /* Logger.swift */; };
 		F51535432ECC019900614BC1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51535322ECC019900614BC1 /* MainTabView.swift */; };
 		F51535442ECC019900614BC1 /* FriendListDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51535332ECC019900614BC1 /* FriendListDemoApp.swift */; };
+		F5CECBB72F07C364003AC8E3 /* FriendRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */; };
+		F5CECBBA2F07C89E003AC8E3 /* FriendContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */; };
 		F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */; };
 		F5E6F93C2EE0393100A96EBF /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F93B2EE0393100A96EBF /* FriendView.swift */; };
 		F5E6F93E2EE0394600A96EBF /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F93D2EE0394600A96EBF /* FriendViewModel.swift */; };
@@ -59,6 +61,8 @@
 		F51B50E12EC7213700C98C6C /* FriendListDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendListDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51B50EE2EC7213900C98C6C /* FriendListDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendListDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51B50F82EC7213900C98C6C /* FriendListDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendListDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRowView.swift; sourceTree = "<group>"; };
+		F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContentView.swift; sourceTree = "<group>"; };
 		F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendHeaderView.swift; sourceTree = "<group>"; };
 		F5E6F93B2EE0393100A96EBF /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
 		F5E6F93D2EE0394600A96EBF /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
@@ -199,6 +203,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F5CECBB82F07C885003AC8E3 /* RowView */ = {
+			isa = PBXGroup;
+			children = (
+				F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */,
+			);
+			path = RowView;
+			sourceTree = "<group>";
+		};
 		F5E1C83B2EE6B464004EAE8E /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +242,8 @@
 		F5E6F9392EE0357700A96EBF /* List */ = {
 			isa = PBXGroup;
 			children = (
+				F5CECBB82F07C885003AC8E3 /* RowView */,
+				F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -405,6 +419,7 @@
 			files = (
 				F515353A2ECC019900614BC1 /* Date+Utils.swift in Sources */,
 				F515353B2ECC019900614BC1 /* String+Utils.swift in Sources */,
+				F5CECBBA2F07C89E003AC8E3 /* FriendContentView.swift in Sources */,
 				F5E6F9442EE2BE4200A96EBF /* UnderlineModifier.swift in Sources */,
 				F5E6F93E2EE0394600A96EBF /* FriendViewModel.swift in Sources */,
 				F515353C2ECC019900614BC1 /* UIButton+Utils.swift in Sources */,
@@ -415,6 +430,7 @@
 				F515353F2ECC019900614BC1 /* Friend.swift in Sources */,
 				F5E6F9422EE2BE3400A96EBF /* BadgeModifier.swift in Sources */,
 				F51535402ECC019900614BC1 /* User.swift in Sources */,
+				F5CECBB72F07C364003AC8E3 /* FriendRowView.swift in Sources */,
 				F51535412ECC019900614BC1 /* APIService.swift in Sources */,
 				F51535422ECC019900614BC1 /* Logger.swift in Sources */,
 				F51535432ECC019900614BC1 /* MainTabView.swift in Sources */,

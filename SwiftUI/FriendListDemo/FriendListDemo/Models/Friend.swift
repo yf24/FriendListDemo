@@ -8,7 +8,10 @@ enum FriendStatus: Int, Codable {
 }
 
 /// 好友資料模型
-struct Friend: Codable {
+struct Friend: Codable, Identifiable {
+    /// for List reuse
+    let id = UUID()
+    
     /// 好友姓名
     let name: String
     /// 好友狀態
