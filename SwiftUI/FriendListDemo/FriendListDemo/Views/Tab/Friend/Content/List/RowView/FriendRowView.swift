@@ -22,34 +22,30 @@ struct FriendRowView: View {
     
     // MARK: - Body
     var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 15) {
-                // 星星 + 頭像
-                avatarSection
-                    .border(.red)
+        HStack(spacing: 15) {
+            // 星星 + 頭像
+            avatarSection
+            
+            // 名字 + 分隔線
+            VStack(spacing: 0) {
+                HStack {
+                    Text(friend.name)
+                        .font(.system(size: 16))
+                        .foregroundColor(.lightGrey2)
+                    
+                    Spacer()
+                    
+                    // 按鈕組
+                    buttonSection
+                }
+                .padding(.vertical, 10)
                 
-                // 名字
-                Text(friend.name)
-                    .font(.system(size: 16))
-                    .foregroundColor(.lightGrey2)
-                    .border(.red)
-                
-                Spacer()
-                
-                // 按鈕組
-                buttonSection
-                    .border(.red)
+                // 分隔線：從名字位置延伸到最右側
+                Divider()
+                    .background(.transferMoney)
             }
-            
-            .padding(.vertical, 10)
-            .border(.frogGreen)
-            
-            // 分隔線
-            Divider()
-                .padding(.leading, 85)  // 對齊名字位置
         }
         .padding(.horizontal, 20)
-//        .border(.red)
     }
 }
 
@@ -60,24 +56,15 @@ extension FriendRowView {
     private var avatarSection: some View {
         HStack(spacing: 0) {
             // 星星
-            if friend.isTop {
-                Image(.friendStar)  // 換成你的 asset 名稱
-                    .resizable()
-                    .frame(width: 14, height: 14)
-                    .padding(.leading, 10)
-                    .padding(.trailing, 6)
-//                    .visibale
-            } else {
-                Rectangle()
-                    .frame(width: 14, height: 14)
-                    .opacity(0)
-                    .padding(.leading, 10)
-                    .padding(.trailing, 6)
-            }
+            Image(.friendStar)
+                .resizable()
+                .frame(width: 14, height: 14)
+                .padding(.leading, 10)
+                .padding(.trailing, 6)
+                .opacity(friend.isTop ? 1 : 0)
                 
-            
             // 頭像
-            Image(.avatar)  // 換成你的 asset 名稱
+            Image(.avatar)
                 .resizable()
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
@@ -88,7 +75,7 @@ extension FriendRowView {
     @ViewBuilder
     private var buttonSection: some View {
         HStack(spacing: 10) {
-            // 轉帳按鈕（都會顯示）
+            // 轉帳按鈕
             ActionButton(title: "轉帳", style: .primary) {
                 onAction(.transfer)
             }
@@ -101,8 +88,9 @@ extension FriendRowView {
                 }
             case .completed:
                 Button(action: { onAction(.more) }) {
-                    Image("more")  // 換成你的 asset 名稱，就是 ••• 的圖
+                    Image(.friendMore)
                         .frame(width: 18, height: 18)
+                        .padding(.trailing, 10)
                 }
             }
         }
@@ -124,13 +112,13 @@ struct ActionButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: 14))
-                .foregroundColor(style == .primary ? .hotPink : .lightGrey2)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(style == .primary ? .hotPink : .lightGrey)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(style == .primary ? Color.hotPink : Color.lightGrey2, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(style == .primary ? .hotPink : .lightGrey, lineWidth: 1)
                 )
         }
     }
