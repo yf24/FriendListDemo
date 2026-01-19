@@ -19,6 +19,7 @@
 		F51535422ECC019900614BC1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F515352F2ECC019900614BC1 /* Logger.swift */; };
 		F51535432ECC019900614BC1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51535322ECC019900614BC1 /* MainTabView.swift */; };
 		F51535442ECC019900614BC1 /* FriendListDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51535332ECC019900614BC1 /* FriendListDemoApp.swift */; };
+		F5BCB6A32F1E2B7200C87012 /* FriendSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BCB6A22F1E2B7200C87012 /* FriendSearchBar.swift */; };
 		F5CECBB72F07C364003AC8E3 /* FriendRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */; };
 		F5CECBBA2F07C89E003AC8E3 /* FriendContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */; };
 		F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */; };
@@ -61,6 +62,7 @@
 		F51B50E12EC7213700C98C6C /* FriendListDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendListDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51B50EE2EC7213900C98C6C /* FriendListDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendListDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51B50F82EC7213900C98C6C /* FriendListDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendListDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5BCB6A22F1E2B7200C87012 /* FriendSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchBar.swift; sourceTree = "<group>"; };
 		F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRowView.swift; sourceTree = "<group>"; };
 		F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContentView.swift; sourceTree = "<group>"; };
 		F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendHeaderView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F5BCB6A12F1E2B6300C87012 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				F5BCB6A22F1E2B7200C87012 /* FriendSearchBar.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
 		F5CECBB82F07C885003AC8E3 /* RowView */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +252,7 @@
 		F5E6F9392EE0357700A96EBF /* List */ = {
 			isa = PBXGroup;
 			children = (
+				F5BCB6A12F1E2B6300C87012 /* SearchBar */,
 				F5CECBB82F07C885003AC8E3 /* RowView */,
 				F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */,
 			);
@@ -434,6 +445,7 @@
 				F51535412ECC019900614BC1 /* APIService.swift in Sources */,
 				F51535422ECC019900614BC1 /* Logger.swift in Sources */,
 				F51535432ECC019900614BC1 /* MainTabView.swift in Sources */,
+				F5BCB6A32F1E2B7200C87012 /* FriendSearchBar.swift in Sources */,
 				F51535442ECC019900614BC1 /* FriendListDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
