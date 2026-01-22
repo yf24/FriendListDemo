@@ -12,13 +12,19 @@ struct FriendView: View {
     @StateObject var vm = FriendViewModel()
     
     var body: some View {
-        FriendHeaderView(
-            onAction: { vm.actionSubject.send($0) }
-        )
-        
-        // FIXME: content 還沒做
-//        FriendContentView()
-        Spacer()
+        VStack(spacing: 0) {
+            FriendHeaderView(
+                userName: vm.userName,
+                kokoId: vm.kokoId,
+                onAction: { vm.handleHeaderAction($0) }
+            )
+            .padding(.bottom, 15)
+            
+            FriendContentView(
+                friends: vm.friends,
+                onAction: { vm.handleContentAction($0) }
+            )
+        }
     }
 }
 
