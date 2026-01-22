@@ -24,6 +24,7 @@ struct FriendContentView: View {
     // MARK: - Action
     enum Action {
         case addFriend
+        case setKokoId
         case transfer(Friend)
         case invite(Friend)
         case more(Friend)
@@ -35,7 +36,16 @@ struct FriendContentView: View {
         VStack(spacing: 0) {
             // 無好友 (空狀態畫面)
             if friends.isEmpty {
-                emptyStateView
+                FriendEmptyView(
+                    onAction: { action in
+                        switch action {
+                        case .addFriend:
+                            onAction(.addFriend)
+                        case .setKokoId:
+                            onAction(.setKokoId)
+                        }
+                    }
+                )
             } else {
                 // 搜尋框
                 FriendSearchBar(
@@ -93,26 +103,6 @@ extension FriendContentView {
             Text("查無「\(searchText)」相關結果")
                 .font(.system(size: 14))
                 .foregroundColor(.lightGrey)
-            
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-    
-    private var emptyStateView: some View {
-        VStack(spacing: 16) {
-            Spacer()
-            
-            Image(.noFriend)
-            
-            Text("就從加好友開始吧：）")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.lightGrey2)
-            
-            Text("與好友們一起用 KOKO 聊起來！\n還能互相收付款、發紅包喔：）")
-                .font(.system(size: 14))
-                .foregroundColor(.lightGrey)
-                .multilineTextAlignment(.center)
             
             Spacer()
         }

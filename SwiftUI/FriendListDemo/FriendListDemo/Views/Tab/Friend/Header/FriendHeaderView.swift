@@ -197,7 +197,5 @@ extension FriendHeaderView {
         )
         
         Spacer()
-//        Color.red
-//        FriendHeaderView()
     }
 }
