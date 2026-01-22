@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+extension FriendContentView {
+    // MARK: - Action
+    enum Action {
+        case addFriend
+        case setKokoId
+        case transfer(Friend)
+        case invite(Friend)
+        case more(Friend)
+        case refresh
+    }
+}
+
 struct FriendContentView: View {
     // MARK: - Properties
     @State private var searchText: String = ""
@@ -19,16 +31,6 @@ struct FriendContentView: View {
         } else {
             return friends.filter { $0.name.contains(searchText) }
         }
-    }
-    
-    // MARK: - Action
-    enum Action {
-        case addFriend
-        case setKokoId
-        case transfer(Friend)
-        case invite(Friend)
-        case more(Friend)
-        case refresh
     }
     
     // MARK: - Body
@@ -88,6 +90,7 @@ extension FriendContentView {
                 }
                 .listRowInsets(EdgeInsets())  // 移除預設 padding
                 .listRowSeparator(.hidden)    // 隱藏預設分隔線（我們自己畫）
+                .listRowBackground(Color.clear)  // 移除背景點擊效果
             }
         }
         .listStyle(.plain)

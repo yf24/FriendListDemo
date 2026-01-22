@@ -121,6 +121,7 @@ struct ActionButton: View {
                         .stroke(style == .primary ? .hotPink : .lightGrey, lineWidth: 1)
                 )
         }
+        .buttonStyle(.borderless)
     }
 }
 
