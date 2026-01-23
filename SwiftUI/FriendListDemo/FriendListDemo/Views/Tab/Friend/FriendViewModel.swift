@@ -63,6 +63,8 @@ class FriendViewModel: ObservableObject {
             deleteFriend(friend)
         case .toggleTop(let friend):
             toggleTop(friend)
+        case .reorder(let from, let to):
+            reorderFriends(from: from, to: to)
         }
     }
     
@@ -99,5 +101,14 @@ class FriendViewModel: ObservableObject {
         )
         friends[index] = updated
     }
+    
+    private func reorderFriends(from: IndexSet, to: Int) {
+        print("Before: \(friends.map { $0.name })")
+        friends.move(fromOffsets: from, toOffset: to)
+        print("After: \(friends.map { $0.name })")
+    }
+    
+    private func deleteMultipleFriends(fids: Set<String>) {
+        friends.removeAll { fids.contains($0.fid) }
     }
 }

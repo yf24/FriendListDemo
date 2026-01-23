@@ -18,13 +18,15 @@ extension FriendContentView {
         case refresh
         case delete(Friend)
         case toggleTop(Friend)
+        case reorder(from: IndexSet, to: Int)
     }
 }
 
 struct FriendContentView: View {
     // MARK: - Properties
     @State private var searchText: String = ""
-    let friends: [Friend]
+    @State private var isEditMode: EditMode = .inactive
+    @Binding var friends: [Friend]
     let onAction: (Action) -> Void
     
     private var filteredFriends: [Friend] {
@@ -79,7 +81,7 @@ extension FriendContentView {
     
     private var friendList: some View {
         List {
-            ForEach(filteredFriends) { friend in
+            ForEach(isEditMode == .active ? friends : filteredFriends) { friend in
                 FriendRowView(friend: friend) { action in
                     switch action {
                     case .transfer:
@@ -122,10 +124,28 @@ extension FriendContentView {
                     .tint(.green)
                 }
             }
+            .onMove { from, to in
+                onAction(.reorder(from: from, to: to))
+            }
+            .onDelete { indexSet in
+                indexSet.forEach { index in
+                    onAction(.delete(friends[index]))
+                }
+            }
         }
         .listStyle(.plain)
+        .environment(\.editMode, $isEditMode)
         .refreshable {
             onAction(.refresh)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(isEditMode == .active ? "完成" : "編輯") {
+                    withAnimation {
+                        isEditMode = isEditMode == .active ? .inactive : .active
+                    }
+                }
+            }
         }
     }
     
@@ -149,19 +169,21 @@ extension FriendContentView {
         @StateObject var vm = FriendViewModel()
         
         var body: some View {
-            FriendContentView(
-                friends: vm.friends,
-                onAction: { vm.handleContentAction($0) }
-            )
+            NavigationStack {
+                FriendContentView(
+                    friends: $vm.friends,
+                    onAction: { vm.handleContentAction($0) }
+                )
+            }
         }
     }
     
     return PreviewWrapper()
 }
 
-#Preview("Empty State") {
-    FriendContentView(
-        friends: [],
-        onAction: { print($0) }
-    )
-}
+//#Preview("Empty State") {
+//    FriendContentView(
+//        friends: .constant([]),
+//        onAction: { print($0) }
+//    )
+//}

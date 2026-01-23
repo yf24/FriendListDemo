@@ -21,7 +21,7 @@ struct FriendView: View {
             .padding(.bottom, 15)
             
             FriendContentView(
-                friends: vm.friends,
+                friends: $vm.friends,
                 onAction: { vm.handleContentAction($0) }
             )
         }
