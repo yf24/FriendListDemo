@@ -5,6 +5,7 @@
 //  Created by TWIPC00587031E on 2025/12/3.
 //
 
+import SwiftUI
 import Foundation
 import Combine
 
@@ -58,6 +59,10 @@ class FriendViewModel: ObservableObject {
         case .refresh:
             print("Refresh")
             refreshData()
+        case .delete(let friend):
+            deleteFriend(friend)
+        case .toggleTop(let friend):
+            toggleTop(friend)
         }
     }
     
@@ -74,6 +79,25 @@ class FriendViewModel: ObservableObject {
     }
     
     private func refreshData() {
-        // TODO: 呼叫 API 重新載入
+        loadMockData()
+    }
+    
+    private func deleteFriend(_ friend: Friend) {
+        friends.removeAll { $0.fid == friend.fid }
+    }
+    
+    private func toggleTop(_ friend: Friend) {
+        guard let index = friends.firstIndex(where: { $0.fid == friend.fid }) else { return }
+        
+        // Friend 是 struct，需要重新建立
+        let updated = Friend(
+            name: friend.name,
+            status: friend.status,
+            isTop: !friend.isTop,
+            fid: friend.fid,
+            updateDate: friend.updateDate
+        )
+        friends[index] = updated
+    }
     }
 }

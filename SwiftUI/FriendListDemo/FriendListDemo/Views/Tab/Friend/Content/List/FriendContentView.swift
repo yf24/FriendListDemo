@@ -16,6 +16,8 @@ extension FriendContentView {
         case invite(Friend)
         case more(Friend)
         case refresh
+        case delete(Friend)
+        case toggleTop(Friend)
     }
 }
 
@@ -91,6 +93,34 @@ extension FriendContentView {
                 .listRowInsets(EdgeInsets())  // 移除預設 padding
                 .listRowSeparator(.hidden)    // 隱藏預設分隔線（我們自己畫）
                 .listRowBackground(Color.clear)  // 移除背景點擊效果
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    // 刪除按鈕（最右邊）
+                    Button(role: .destructive) {
+                        onAction(.delete(friend))
+                    } label: {
+                        Label("刪除", systemImage: "trash")
+                    }
+                    
+                    // 置頂按鈕
+                    Button {
+                        onAction(.toggleTop(friend))
+                    } label: {
+                        Label(
+                            friend.isTop ? "取消最愛" : "最愛",
+                            systemImage: friend.isTop ? "star.slash" : "star"
+                        )
+                    }
+                    .tint(.yellow)
+                }
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    // 右滑出的按鈕
+                    Button {
+                        onAction(.transfer(friend))
+                    } label: {
+                        Label("轉帳", systemImage: "dollarsign.circle")
+                    }
+                    .tint(.green)
+                }
             }
         }
         .listStyle(.plain)
@@ -115,14 +145,18 @@ extension FriendContentView {
 
 // MARK: - Preview
 #Preview {
-    FriendContentView(
-        friends: [
-            Friend(name: "黃靖僑", status: .invitedSent, isTop: false, fid: "1", updateDate: Date()),
-            Friend(name: "翁勳儀", status: .inviting, isTop: true, fid: "2", updateDate: Date()),
-            Friend(name: "洪佳好", status: .completed, isTop: false, fid: "3", updateDate: Date())
-        ],
-        onAction: { print($0) }
-    )
+    struct PreviewWrapper: View {
+        @StateObject var vm = FriendViewModel()
+        
+        var body: some View {
+            FriendContentView(
+                friends: vm.friends,
+                onAction: { vm.handleContentAction($0) }
+            )
+        }
+    }
+    
+    return PreviewWrapper()
 }
 
 #Preview("Empty State") {
