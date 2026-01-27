@@ -23,6 +23,8 @@
 		F5BCB6A62F20D1BF00C87012 /* FriendEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BCB6A52F20D1BF00C87012 /* FriendEmptyView.swift */; };
 		F5CECBB72F07C364003AC8E3 /* FriendRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */; };
 		F5CECBBA2F07C89E003AC8E3 /* FriendContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */; };
+		F5E4E1972F289E0000318459 /* MoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4E1962F289E0000318459 /* MoneyView.swift */; };
+		F5E4E19A2F289E4A00318459 /* MoneySubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4E1992F289E4A00318459 /* MoneySubViews.swift */; };
 		F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */; };
 		F5E6F93C2EE0393100A96EBF /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F93B2EE0393100A96EBF /* FriendView.swift */; };
 		F5E6F93E2EE0394600A96EBF /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6F93D2EE0394600A96EBF /* FriendViewModel.swift */; };
@@ -67,6 +69,8 @@
 		F5BCB6A52F20D1BF00C87012 /* FriendEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyView.swift; sourceTree = "<group>"; };
 		F5CECBB62F07C361003AC8E3 /* FriendRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRowView.swift; sourceTree = "<group>"; };
 		F5CECBB92F07C89D003AC8E3 /* FriendContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContentView.swift; sourceTree = "<group>"; };
+		F5E4E1962F289E0000318459 /* MoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyView.swift; sourceTree = "<group>"; };
+		F5E4E1992F289E4A00318459 /* MoneySubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySubViews.swift; sourceTree = "<group>"; };
 		F5E6F9362EDD8A0D00A96EBF /* FriendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendHeaderView.swift; sourceTree = "<group>"; };
 		F5E6F93B2EE0393100A96EBF /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
 		F5E6F93D2EE0394600A96EBF /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		F51535612ECF0AA800614BC1 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				F5E4E1952F289DEF00318459 /* Money */,
 				F5E6F9332EDD897C00A96EBF /* Friend */,
 			);
 			path = Tab;
@@ -238,6 +243,23 @@
 				F5E6F9432EE2BE4000A96EBF /* UnderlineModifier.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		F5E4E1952F289DEF00318459 /* Money */ = {
+			isa = PBXGroup;
+			children = (
+				F5E4E1982F289E2C00318459 /* SubViews */,
+				F5E4E1962F289E0000318459 /* MoneyView.swift */,
+			);
+			path = Money;
+			sourceTree = "<group>";
+		};
+		F5E4E1982F289E2C00318459 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F5E4E1992F289E4A00318459 /* MoneySubViews.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		F5E6F9332EDD897C00A96EBF /* Friend */ = {
@@ -448,12 +470,14 @@
 				F515353C2ECC019900614BC1 /* UIButton+Utils.swift in Sources */,
 				F515353D2ECC019900614BC1 /* UInt64+TimeUnit.swift in Sources */,
 				F515353E2ECC019900614BC1 /* UIView+Utils.swift in Sources */,
+				F5E4E1972F289E0000318459 /* MoneyView.swift in Sources */,
 				F5E6F9372EDD8A0D00A96EBF /* FriendHeaderView.swift in Sources */,
 				F5E6F93C2EE0393100A96EBF /* FriendView.swift in Sources */,
 				F515353F2ECC019900614BC1 /* Friend.swift in Sources */,
 				F5E6F9422EE2BE3400A96EBF /* BadgeModifier.swift in Sources */,
 				F51535402ECC019900614BC1 /* User.swift in Sources */,
 				F5CECBB72F07C364003AC8E3 /* FriendRowView.swift in Sources */,
+				F5E4E19A2F289E4A00318459 /* MoneySubViews.swift in Sources */,
 				F51535412ECC019900614BC1 /* APIService.swift in Sources */,
 				F51535422ECC019900614BC1 /* Logger.swift in Sources */,
 				F51535432ECC019900614BC1 /* MainTabView.swift in Sources */,

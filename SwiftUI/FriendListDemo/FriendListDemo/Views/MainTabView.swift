@@ -25,14 +25,12 @@ struct MainTabView: View {
 // MARK: - Tabs
 extension MainTabView {
     private var moneyTab: some View {
-        NavigationStack {
-            Text("錢錢頁面")
-        }
-        .tabItem {
-            Image(.tabMoney)
-            Text("錢錢")
-        }
-        .tag(1)
+        MoneyView()  // 已經有 NavigationStack 了，不用再包
+            .tabItem {
+                Image(.tabMoney)
+                Text("錢錢")
+            }
+            .tag(1)
     }
     
     private var friendTab: some View {
