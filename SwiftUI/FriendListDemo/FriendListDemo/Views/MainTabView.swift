@@ -67,14 +67,12 @@ extension MainTabView {
     }
     
     private var settingsTab: some View {
-        NavigationStack {
-            Text("設定頁面")
-        }
-        .tabItem {
-            Image(.tabSettings)
-            Text("設定")
-        }
-        .tag(5)
+        SettingsView()  // 已經有 NavigationStack
+            .tabItem {
+                Image(.tabSettings)
+                Text("設定")
+            }
+            .tag(5)
     }
 }
 
